@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Me</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap"/>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #0f0e17;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .contact-container {
+      background: #1a1a2e;
+      padding: 40px;
+      border-radius: 20px;
+      width: 100%;
+      max-width: 700px;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+    }
+
+    .contact-container h1 {
+      font-size: 48px;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+
+    .contact-container h1::after {
+      content: '.';
+      color: #a259ff;
+    }
+
+    .field-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .field {
+      flex: 1 1 45%;
+    }
+
+    .field.full {
+      flex: 1 1 100%;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 15px;
+      background: #161622;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      color: white;
+    }
+
+    textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .icon-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #bb86fc;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .submit-btn {
+      margin-top: 25px;
+      background: #a259ff;
+      color: white;
+      border: none;
+      padding: 14px 30px;
+      font-size: 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .submit-btn:hover {
+      background: #8b45e2;
+    }
+
+    .contact-footer {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 12px;
+      color: #777;
+    }
+
+    .icon {
+      color: #bb86fc;
+    }
+  </style>
+</head>
+<body>
+  <div class="contact-container">
+    <p style="text-transform: uppercase; color: #ccc; font-weight: 500;">Get in touch</p>
+    <h1>Contact</h1>
+
+    <form action="https://formspree.io/f/mldwkylw" method="POST">
+      <div class="field-group">
+        <div class="field">
+          <div class="icon-label">
+            <span class="icon">👤</span> <span>Name</span>
+          </div>
+          <input type="text" name="name" placeholder="Your name" required />
+        </div>
+
+        <div class="field">
+          <div class="icon-label">
+            <span class="icon">✉️</span> <span>Email</span>
+          </div>
+          <input type="email" name="email" placeholder="Your email" required />
+        </div>
+
+        <div class="field full">
+          <div class="icon-label">
+            <span class="icon">💬</span> <span>Message</span>
+          </div>
+          <textarea name="message" placeholder="Your message here..." required></textarea>
+        </div>
+
+        <div class="field full" style="margin-top: 10px;">
+          <div class="g-recaptcha" data-sitekey="YOUR_RECAPTCHA_SITE_KEY"></div>
+        </div>
+
+        <div class="field full">
+          <button class="submit-btn" type="submit">Send Message</button>
+        </div>
+      </div>
+    </form>
+
+    <div class="contact-footer">
+      Protected by reCAPTCHA Enterprise.
+    </div>
+  </div>
+</body>
+</html>

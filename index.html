@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang = "en" dir ="ltr">
+    <head>
+        <meta charset="UTF-8">
+        <title>Aidehua's personal Website</title>
+        <link rel ="stylesheet" href = "style.css">
+        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+        <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+
+        <nav>
+            <div class="nav-container">
+                <div class="logo" data-aos ="zoom-in" data-aos-duration ="1500" > 
+                    <span>Aidehua</span>
+                </div>
+                <div class="links">
+                    <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100"><a href="#home">Home</a></div>
+                    <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200"><a href="#about">About</a></div>
+                    <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="300"><a href="#skills">Skills</a></div>
+                    <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="400"><a href="#education">Education</a></div>
+                    <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="500"><a href="#services">Services</a></div>
+                    <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="600"><a href="#contact">Contact</a></div>
+                  </div>
+                <i class="fa-solid fa-bars hamburg" onclick="hamburg()"></i>
+            </div>
+            <div class="dropdown">
+                <div class="links">
+                  <a href="#home">Home</a>
+                  <a href="#about">About</a>
+                  <a href="#skills">Skills</a>
+                  <a href="#education">Education</a>
+                  <a href="#services">Services</a>
+                  <a href="#contact">Contact</a>
+                  <i class="fa-solid fa-xmark cancel" onclick="cancel()"></i>
+                </div>
+              </div>
+        </nav>
+        <section>
+            <div class="main-container">
+                <div class="image"data-aos ="zoom-in" data-aos-duration ="3000">
+                    <img src="main.jpg" alt="">
+                </div>
+                <div class="content">
+                    <h1 data-aos = "fade-left" data-aos-duration ="1500" data-aos-delay="700">Hey I'm <span>Aidehua</span></h1>
+                    <div class="typewriter" data-aos="fade-right" data-aos-duration ="1500" data-aos-delay="900">
+                        I'm a 
+                        <span class="typewriter-text"></span><span class="cursor">|</span>
+                    </div>
+                    <p data-aos = "flip-down" data-aos-duration="1500" data-aos-delay="1100">I'm an international student from China with roughly over 5 years of coding experience in various fields, including software engineering and cryptographics. </p>
+                    <div class="social-links">
+                        <a href="https://github.com/AidehuaJR" data-aos ="fade-up" data-aos-duration="1500" data-aos="1300"><i class = "fa-brands fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/edward-kim-700300247/" data-aos ="fade-up" data-aos-duration="1500" data-aos="1400"><i class = "fa-brands fa-linkedin"></i></a>
+                        <a href="https://www.instagram.com/aidehua_84/" data-aos ="fade-up" data-aos-duration="1500" data-aos="1500"><i class = "fa-brands fa-instagram"></i></a>
+                        <a href="https://snapchat.com/t/dotg7y18" data-aos ="fade-up" data-aos-duration="1500" data-aos="1600"><i class = "fa-brands fa-snapchat"></i></a>
+
+                    </div>
+                    <div class="button">
+                        <button id="hireBtn">Hire me</button>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--About Section Start-->
+        <section class="about" id="about">
+            <div class = "content">
+                <div class="title" data-aos="fade-up" data-aos-duration = "1500"><span>About me </span></div>
+                <div class="about-details">
+                    <div class="left" data-aos="fade-right" data-aos-duration = "1500" data-aos-delay="200">
+                        <img src ="abt_me.jpg" alt=""/>
+                    </div>
+                    <div class="right">
+                        <div class = "topic"  data-aos="fade-left" data-aos-duration="1500" data-aos-delay="200">Designing is my passion</div>
+                        <p data-aos="flip-down" data-aos-duration = "1500" data-aos-delay="300">
+                            It was the journey, not the result, one of the most meaningful achievement was I’ve improving UI design at UCSC. It wasn’t just like playing a game, it was about creating them. I loved the entire process: planning, designing, getting user feedback, and seeing it all come together. That creative flow reminded me why I enjoy game development. It’s not just about visuals or code, but it’s about crafting interactive, meaningful experiences with limited tools. Whether through WASD keys or environmental storytelling, I realised I thrive on making something work as a whole. This passion drove me deeper into game design, blending creativity with technical skills, and inspired my future path.
+                        </p>
+                        <div class="button" data-aos ="zoom-in-right" data-aos-duration="1500" data-aos-delay="400">
+                            <a href="Resume-EdwardKim.pdf" download>
+                            <button>Download CV</button>
+                            </a>
+                        </div>
+                    </div>
+                     
+                </div>
+
+            </div>
+        </section>
+        <!--My Skills section-->
+        <section class="skills" id="skills">
+            <div class="content">
+              <div class="title" data-aos ="fade-up" data-aos-duration="1200"><span>My Skills</span></div>
+              <div class="skills-details">
+                <!-- Left Side -->
+                <div class="text">
+                  <div class="topic" data-aos="fade-right" data-aos-duration="1200" data-aos-delay="200">Skills Reflects Our Knowledge</div>
+                  <p data-aos="fade-right" data-aos-duration="1200" data-aos-delay="200">Adapting to new environments and languages has always come naturally to me. It’s just fascinating how  knowledge can be shared in so many different forms. Computers work in a similar way, it’s just that  programming is simply their language. The fact that I could shape something meaningful just through commands and words amazes me. Coding is like a conversation, you speak speak in commands and words and computers respond through results, just like how humans talk to each other.</p>
+                  <div class="experience">
+                    <div class="num">~20</div>
+                    <div class="exp">Years Of<br />Experience</div>
+                  </div>
+                </div>
+          
+                <!-- Right Side -->
+                <div class="boxes">
+                  <div class="box">
+                    <div class="topic" data-aos="fade-right" data-aos-duration="1200" data-aos-delay="150">Korean</div>
+                    <div class="per" data-aos="zoom-in" data-aos-duration="1200" data-aos-delay="300">19Yrs</div>
+                  </div>
+                  <div class="box">
+                    <div class="topic">Chinese</div>
+                    <div class="per"data-aos="zoom-in" data-aos-duration="1200" data-aos-delay="250">10Yrs</div>
+                  </div>
+                  <div class="box">
+                    <div class="topic" data-aos="fade-right" data-aos-duration="1200" data-aos-delay="350">English</div>
+                    <div class="per" data-aos="zoom-in" data-aos-duration="1200" data-aos-delay="600">12Yrs%</div>
+                  </div>
+                  <div class="box">
+                    <div class="topic"data-aos="fade-right" data-aos-duration="1200" data-aos-delay="450">Python</div>
+                    <div class="per" data-aos="zoom-in" data-aos-duration="1200" data-aos-delay="600">4Yrs</div>
+                  </div>
+                  <div class="box">
+                    <div class="topic"data-aos="fade-right" data-aos-duration="1200" data-aos-delay="550">HTML</div>
+                    <div class="per" data-aos="zoom-in" data-aos-duration="1200" data-aos-delay="600">3Yrs</div>
+                  </div>
+                  <div class="box">
+                    <div class="topic"data-aos="fade-right" data-aos-duration="1200" data-aos-delay="650"> CSS</div>
+                    <div class="per" data-aos="zoom-in" data-aos-duration="1200" data-aos-delay="600">3Yrs</div>
+                  </div>
+
+                  
+                </div>
+              </div>
+            </div>
+        </section>
+
+        <!-- Education Timeline Boxes -->
+        <section class="timeline" id="education">
+            <div class="content">
+              <div class="title" data-aos="fade-up" data-aos-duration="1200">
+                <span>Education</span>
+              </div>
+          
+              <div class="timeline-container-vertical">
+                <div class="timeline-vertical">
+                    <!-- UCSC -->
+                    <div class="timeline-block left" onclick="openModal('ucsc')">
+                        <div class="timeline-icon"><img src="UCSC_logo.png" alt="UCSC"></div>
+                        <div class="timeline-box">
+                        <h3>University of California, Santa Cruz</h3>
+                        <p>Computer Science: Game Development (B.S.)</p>
+                        <span class="timeline-date">2024 – 2025</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Stanford -->
+                    <div class="timeline-block right" onclick="openModal('stanford')">
+                        <div class="timeline-icon"><img src="Stanford_logo.png" alt="Stanford"></div>
+                        <div class="timeline-box">
+                        <h3>Stanford University (Online)</h3>
+                        <p>Artificial Intelligence</p>
+                        <span class="timeline-date">2024 – Present</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Imperial -->
+                    <div class="timeline-block left" onclick="openModal('imperial')">
+                        <div class="timeline-icon"><img src="Imperial_logo.png" alt="Imperial"></div>
+                        <div class="timeline-box">
+                        <h3>Imperial College London</h3>
+                        <p>Computational Engineering</p>
+                        <span class="timeline-date">2025 – Present</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Princeton -->
+                    <div class="timeline-block right" onclick="openModal('princeton')">
+                        <div class="timeline-icon"><img src="Princeton_universoty_logo.png" alt="Princeton"></div>
+                        <div class="timeline-box">
+                        <h3>Princeton University (Online)</h3>
+                        <p>Computer Science Foundations</p>
+                        <span class="timeline-date">2025 – Present</span>
+                        </div>
+                    </div>
+                    
+                    <!-- SWIS -->
+                    <div class="timeline-block left" onclick="openModal('swis')">
+                        <div class="timeline-icon"><img src="SWIS_logo.jpg" alt="SWIS"></div>
+                        <div class="timeline-box">
+                        <h3>Shen Wai International School</h3>
+                        <p>International Baccalaureate (IB)</p>
+                        <span class="timeline-date">2018 – 2024</span>
+                        </div>
+                    </div>
+
+                    <!-- R.O.K.A. -->
+                    <div class="timeline-block right" onclick="openModal('roka')">
+                      <div class="timeline-icon"><img src="ROKA.png" alt="ROKA"></div>
+                      <div class="timeline-box">
+                      <h3>Republic of Korea's Army</h3>
+                      <p>Tactical communications equipment operation/maintenance</p>
+                      <span class="timeline-date">2025 entry</span>
+                      </div>
+                  </div>
+  
+  
+          
+                </div>
+              </div>
+            </div>
+        </section>
+        
+
+
+        <!--My Services section starts here-->
+        <section class="services" id="services">
+            <div class="content">
+              <div class="title" data-aos="fade-up" data-aos-duration="1200"><span>My Services</span></div>
+              <div class="boxes">
+                
+                <div class="box" data-aos="fade-up" data-aos-duration ="1500" data-aos-delay="200">
+                  <div class="icon">
+                    <i class="fas fa-desktop"></i>
+                  </div>
+                  <div class="topic"> Software Engineering</div>
+                  <p>Currently no available</p>
+                </div>
+          
+                <div class="box" data-aos="fade-up" data-aos-duration ="1500" data-aos-delay="400">
+                  <div class="icon">
+                    <i class="fas fa-paint-brush"></i>
+                  </div>
+                  <div class="topic">Graphic Design</div>
+                  <p>Currently not available</p>
+                </div>
+          
+                <div class="box" data-aos="fade-up" data-aos-duration ="1500" data-aos-delay="600">
+                  <div class="icon">
+                    <i class="fas fa-chart-line"></i>
+                  </div>
+                  <div class="topic">Digital Marketing</div>
+                  <p>Previsouly in marketing team of Adobe Express, increased 24% downloads in just 2 weeks </p>
+                </div>
+          
+                <div class="box"data-aos="fade-up" data-aos-duration ="1500" data-aos-delay="800">
+                  <div class="icon">
+                    <i class="fas fa-gamepad"></i>
+                  </div>
+                  <div class="topic">Game Development</div>
+                  <p>5+ years of experience in game dvelopment, .godot, html, python, unity, etc. </p>
+                </div>
+          
+                <div class="box" data-aos="fade-up" data-aos-duration ="1500" data-aos-delay="1000">
+                  <div class="icon">
+                    <i class="fas fa-language"></i>
+                  </div>
+                  <div class="topic">Languages</div>
+                  <p>C2 – Mastery (Proficiency) in Chinese, English and Korean + A2 – Waystage (Elementary): in Japanese and Caontonese </p>
+                </div>
+          
+                <div class="box" data-aos="fade-up" data-aos-duration ="1500" data-aos-delay="1200">
+                  <div class="icon">
+                    <i class="fas fa-tablet-alt"></i>
+                  </div>
+                  <div class="topic">UI/UX Design</div>
+                  <p>Previous UI designer of slugsuccess's main website for summer</p>
+                </div>
+          
+              </div>
+            </div>
+          </section>
+          
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+            <div class="contact-container">
+            <div class="contact-header">
+                <h2>Contact<span class="dot">.</span></h2>
+                <p>Get in Touch</p>
+            </div>
+            <form action="https://formspree.io/f/yourFormID" method="POST" class="contact-form">
+                <div class="input-row">
+                <div class="input-group">
+                    <label><i class="fas fa-user"></i> Name</label>
+                    <input type="text" name="name" required placeholder="Your name" />
+                </div>
+                <div class="input-group">
+                    <label><i class="fas fa-envelope"></i> Email</label>
+                    <input type="email" name="email" required placeholder="Your email" />
+                </div>
+                </div>
+        
+                <div class="input-group full-width">
+                <label><i class="fas fa-comment-dots"></i> Message</label>
+                <textarea name="message" rows="5" required placeholder="Write your message here..."></textarea>
+                </div>
+        
+                <!-- Optional: Google reCAPTCHA -->
+                <div class="recaptcha">
+                <div class="g-recaptcha" data-sitekey="your-site-key"></div>
+                </div>
+        
+                <button type="submit" class="send-button">Send Message</button>
+            </form>
+        
+            <p class="footnote">Protected by reCAPTCHA Enterprise.</p>
+            </div>
+        </section>
+  
+        <!-- Font Awesome (Icons) -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <!-- reCAPTCHA Script -->
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+        <!-- Modal Template -->
+        <div id="modal" class="timeline-modal" onclick="outsideClick(event)">
+            <div class="timeline-modal-content" id="modalContent">
+            <div id="modal-details"></div>
+            </div>
+        </div>
+  
+  
+          
+        <!--Footer Section Start-->
+        <footer>
+            <div class="text">
+                <span>Created By
+                    <a href="#">Aidehua</a>
+                    &#169;2025 All rights reserved</span>
+            </div>
+        </footer>
+
+        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+        <script>
+          AOS.init({offset:0});
+        </script>
+
+        <script src="script.js"></script>
+
+        <div id="modal-bg" class="modal-background" onclick="closeModal(event)">
+            <div id="modal-content" class="modal-content-box">
+              <div id="modal-inner-text"></div>
+            </div>
+          </div>
+  
+    </body>
+
+    <!-- Modal Template -->
+    <div id="modal-bg" class="modal-background" onclick="closeModal(event)">
+        <div id="modal-content" class="modal-content-box">
+        <div id="modal-inner-text">
+            <!-- dynamic content goes here -->
+        </div>
+        </div>
+    </div>
+  
+</html>
