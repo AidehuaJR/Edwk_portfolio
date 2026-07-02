@@ -1798,3 +1798,102 @@ section .button button:hover {
             linear-gradient(180deg, rgba(242, 230, 192, 0.94) 0%, rgba(242, 230, 192, 0.74) 58%, rgba(242, 230, 192, 0.3) 100%);
     }
 }
+
+.timeline {
+    background:
+        radial-gradient(circle at 22% 18%, rgba(175, 163, 74, 0.14), transparent 30%),
+        radial-gradient(circle at 78% 68%, rgba(188, 83, 59, 0.1), transparent 28%),
+        var(--bg);
+    color: var(--text);
+}
+
+.timeline .title span {
+    color: var(--coal);
+}
+
+.timeline-container-vertical {
+    padding-top: 76px;
+    padding-bottom: 76px;
+}
+
+.timeline-vertical::before {
+    background: linear-gradient(180deg, transparent, var(--avocado) 10%, var(--ketchup) 50%, var(--avocado) 90%, transparent);
+    width: 3px;
+}
+
+.timeline-icon {
+    background: var(--surface);
+    border: 3px solid var(--avocado);
+    box-shadow: 0 12px 28px rgba(21, 40, 34, 0.14);
+}
+
+.timeline-icon img {
+    background: var(--cream);
+}
+
+.timeline-box {
+    background: var(--surface);
+    color: var(--coal);
+    border: 1px solid var(--line);
+    box-shadow: 0 18px 42px rgba(21, 40, 34, 0.12);
+}
+
+.timeline-block:nth-child(2n) .timeline-box {
+    background: #eadcad;
+}
+
+.timeline-block:nth-child(3n) .timeline-box {
+    background: #f7ecc8;
+}
+
+.timeline-box h3 {
+    color: var(--coal);
+}
+
+.timeline-box p {
+    color: var(--muted);
+}
+
+.timeline-date {
+    color: var(--ketchup);
+    font-weight: 700;
+}
+
+.timeline-block.left .timeline-box::before {
+    border-right-color: var(--surface);
+}
+
+.timeline-block.right .timeline-box::before {
+    border-left-color: var(--surface);
+}
+
+.timeline-block:nth-child(2n).left .timeline-box::before {
+    border-right-color: #eadcad;
+}
+
+.timeline-block:nth-child(2n).right .timeline-box::before {
+    border-left-color: #eadcad;
+}
+
+.timeline-block:nth-child(3n).left .timeline-box::before {
+    border-right-color: #f7ecc8;
+}
+
+.timeline-block:nth-child(3n).right .timeline-box::before {
+    border-left-color: #f7ecc8;
+}
+
+.timeline-box:hover {
+    background: var(--coal-panel);
+    color: var(--cream);
+    box-shadow: 0 20px 46px rgba(21, 40, 34, 0.24);
+}
+
+.timeline-box:hover h3,
+.timeline-box:hover p {
+    color: var(--cream);
+}
+
+.timeline-box:hover .timeline-date {
+    color: var(--surface-soft);
+}
