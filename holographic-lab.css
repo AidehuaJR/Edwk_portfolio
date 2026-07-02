@@ -1,0 +1,237 @@
+html,
+body {
+    overflow-x: hidden;
+}
+
+.interactive-lab {
+    position: relative;
+    min-height: 82vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding: 90px 8vw;
+    background: #020202;
+    isolation: isolate;
+}
+
+.interactive-lab::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background:
+        radial-gradient(circle at 75% 45%, rgba(70, 247, 215, 0.2), transparent 32%),
+        radial-gradient(circle at 82% 25%, rgba(106, 167, 255, 0.16), transparent 28%),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.96) 0%, rgba(0, 0, 0, 0.78) 38%, rgba(0, 0, 0, 0.18) 100%);
+}
+
+#holographic-lab-canvas {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.lab-scanline {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.12;
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.08) 0,
+        rgba(255, 255, 255, 0.08) 1px,
+        transparent 1px,
+        transparent 7px
+    );
+    mix-blend-mode: screen;
+}
+
+.lab-content {
+    position: relative;
+    z-index: 2;
+    max-width: 660px;
+    color: white;
+}
+
+.lab-kicker {
+    color: #46f7d7;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    margin-bottom: 18px;
+    text-transform: uppercase;
+}
+
+.lab-content h2 {
+    color: white;
+    font-size: clamp(2.4rem, 5vw, 5.2rem);
+    line-height: 1;
+    font-weight: 800;
+    max-width: 760px;
+    margin-bottom: 24px;
+    text-shadow: 0 0 24px rgba(183, 75, 75, 0.45);
+}
+
+.lab-content p {
+    color: #e7e7e7;
+    font-size: 1rem;
+    line-height: 1.8;
+    max-width: 590px;
+}
+
+.lab-controls {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 28px;
+    padding: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 8px;
+    background: rgba(8, 8, 10, 0.72);
+    backdrop-filter: blur(10px);
+}
+
+.lab-controls button {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 0 16px;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    background: transparent;
+    color: #f5f5f5;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 700;
+    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.lab-controls button:hover,
+.lab-controls button:focus-visible {
+    border-color: rgba(70, 247, 215, 0.7);
+    color: #46f7d7;
+    transform: translateY(-2px);
+    outline: none;
+}
+
+.lab-controls button.is-active {
+    background: #b74b4b;
+    color: white;
+    box-shadow: 0 0 22px rgba(183, 75, 75, 0.58);
+}
+
+.lab-highlights {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 32px;
+    max-width: 760px;
+}
+
+.lab-highlight {
+    min-width: 0;
+    padding-left: 14px;
+    border-left: 2px solid #46f7d7;
+}
+
+.lab-highlight:nth-child(2) {
+    border-left-color: #b74b4b;
+}
+
+.lab-highlight:nth-child(3) {
+    border-left-color: #6aa7ff;
+}
+
+.lab-highlight strong,
+.lab-highlight span {
+    display: block;
+}
+
+.lab-highlight strong {
+    color: white;
+    font-size: 1rem;
+    margin-bottom: 8px;
+}
+
+.lab-highlight span {
+    color: #b8b8b8;
+    font-size: 0.86rem;
+    line-height: 1.6;
+}
+
+@media(max-width : 968px) {
+    .interactive-lab {
+        min-height: auto;
+        padding: 78px 24px;
+    }
+
+    .interactive-lab::before {
+        background:
+            radial-gradient(circle at 66% 35%, rgba(70, 247, 215, 0.2), transparent 35%),
+            linear-gradient(180deg, rgba(0, 0, 0, 0.94) 0%, rgba(0, 0, 0, 0.74) 58%, rgba(0, 0, 0, 0.3) 100%);
+    }
+
+    .lab-content {
+        max-width: 100%;
+    }
+
+    .lab-content h2 {
+        font-size: clamp(2rem, 12vw, 4rem);
+    }
+
+    .lab-controls {
+        width: 100%;
+    }
+
+    .lab-controls button {
+        flex: 1 1 130px;
+    }
+
+    .lab-highlights {
+        grid-template-columns: 1fr;
+    }
+
+    .timeline-container-vertical {
+        padding: 42px 0 42px 24px;
+    }
+
+    .timeline-vertical::before {
+        left: 36px;
+    }
+
+    .timeline-block {
+        min-height: 82px;
+        margin: 38px 0;
+        padding-left: 88px;
+        align-items: center;
+    }
+
+    .timeline-icon {
+        left: 36px;
+        width: 64px;
+        height: 64px;
+    }
+
+    .timeline-block.left .timeline-box,
+    .timeline-block.right .timeline-box {
+        width: 100%;
+        max-width: none;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .timeline-block.left .timeline-box::before,
+    .timeline-block.right .timeline-box::before {
+        left: -16px;
+        right: auto;
+        border-left-color: transparent;
+        border-right-color: #221f29;
+    }
+}
