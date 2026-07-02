@@ -69,25 +69,25 @@ document.addEventListener("DOMContentLoaded", () => {
       <p>Certificates:</p>
       <a href="https://www.coursera.org/account/accomplishments/certificate/P3V3F9FTUH72" target="_blank" rel="noopener noreferrer" style="color:#0077cc; text-decoration:none;">AI Implications for the Economy
       and Society</a>
-      <p>\n AI in Healthcare Capstone(In Progress)</p>
-      <p>Introduction to Logic(In Progress)</p>
-      <p>Algorithms Specialization(In Progress)</p>
+      <p>\n AI in Healthcare Capstone (In Progress)</p>
+      <p>Introduction to Logic (In Progress)</p>
+      <p>Algorithms Specialization (In Progress)</p>
       
 
     `,
     imperial: `
       <h2>Imperial College London</h2>
       <p>Engaged in advanced computational engineering and systems design for scientific computing with AI integration.\n</p>
-      <ahref="https://www.coursera.org/account/accomplishments/certificate/7F0VBYJF1BOA" target="_blank" rel="noopener noreferrer" style="color:#0077cc; text-decoration:none;">Certificate :Mathematics for Machine Learning: Linear Algebra</a>
+      <a href="https://www.coursera.org/account/accomplishments/certificate/7F0VBYJF1BOA" target="_blank" rel="noopener noreferrer" style="color:#0077cc; text-decoration:none;">Certificate: Mathematics for Machine Learning: Linear Algebra</a>
     `,
     princeton: `
       <h2>Princeton University (Online)</h2>
       <p>Exploring theoretical CS: Algorithms I & II, Computer Architecture, and Theory of Computation.</p>
-      <p>\nBitcoin and Cryptocurrency Technologies(In Progress)<p/>
-      <p>Computer Science: Algorithms, Theory, and Machines(In Progress)<p/>
-      <p>Algorithms, Part I(In Progress)<p/>
-      <p>Algorithms, Part II(Yet to enroll)<p/>
-      <p>Computer Architecture(Yet to enroll)<p/>
+      <p>\nBitcoin and Cryptocurrency Technologies (In Progress)</p>
+      <p>Computer Science: Algorithms, Theory, and Machines (In Progress)</p>
+      <p>Algorithms, Part I (In Progress)</p>
+      <p>Algorithms, Part II (Yet to enroll)</p>
+      <p>Computer Architecture (Yet to enroll)</p>
       
     `,
     swis: `
@@ -102,8 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
    `,
    roka: `
      <h2>Republic of Korea's Army</h2>
-     <p>Working for Korean goverment's cybersecurity troop, entering 2025 Oct.</p>
-  </a>
+     <p>Working for the Korean government's cybersecurity unit, entering October 2025.</p>
    `
   };
 
