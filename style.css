@@ -1,5 +1,18 @@
 /*Google Font CDN link*/
-@import url('https://fonts.googleapis.com/css2?family=Poppins%3Awght%40100%3B200%3B300%3B400%3B500%3B600&display=swap%27%29%3B');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@100;200;300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+:root {
+    --bg: #050605;
+    --surface: #0b100d;
+    --surface-soft: #111910;
+    --text: #f4f7ee;
+    --muted: #aab4a3;
+    --accent: #46f7a8;
+    --accent-2: #d7ff5f;
+    --warm: #f4a340;
+    --line: rgba(244, 247, 238, 0.12);
+    --shadow-accent: rgba(70, 247, 168, 0.34);
+}
 
 *{
     margin: 0;
@@ -17,7 +30,8 @@ html {
 body{
     width : 100%;
     height : auto;
-    background-color: black;
+    background-color: var(--bg);
+    color: var(--text);
     overflow-x: hidden;
 
 }
@@ -33,13 +47,13 @@ body{
 }
 
 ::-webkit-scrollbar-thumb{
-    background : #b74b4b;
+    background : var(--accent);
     border-radius: 12px;
     transition : all 0.3s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover{
-    background : #b74b4b;
+    background : var(--accent);
 
 }
 /*navbar styling */
@@ -65,8 +79,8 @@ nav{
 }
 
 .logo span{
-    color :#b74b4b;
-    text-shadow: 0 0 10px #b74b4b;
+    color :var(--accent);
+    text-shadow: 0 0 10px var(--accent);
 }
 
 .hamburg,
@@ -103,9 +117,9 @@ nav{
     left : 0;
     width : 0%;
     height : 3px;
-    background-color: #b74b4b;
+    background-color: var(--accent);
     transition : 0.2s linear;
-    
+
 }
 
 .nav-container .links a:hover::before{
@@ -114,7 +128,7 @@ nav{
 }
 
 .nav-container .links a:hover{
-    color : #b74b4b
+    color : var(--accent)
 }
 
 .dropdown{
@@ -141,7 +155,7 @@ nav{
 }
 
 .dropdown .links a:hover{
-    background-color:#b74b4b;
+    background-color:var(--accent);
 
 }
 
@@ -165,7 +179,7 @@ section .main-container{
     height : 80vh;
     border-radius:100%;
     overflow:hidden;
-    box-shadow: 0 0 50px #b74b4b;
+    box-shadow: 0 0 50px var(--accent);
 
 }
 
@@ -202,8 +216,8 @@ section .main-container{
 }
 
 .content h1{
-    color : #b74b4b;
-    text-shadow: 0 0 10px #b74b4b;
+    color : var(--accent);
+    text-shadow: 0 0 10px var(--accent);
 
 }
 
@@ -214,8 +228,8 @@ section .main-container{
 }
 
 .content .typewriter-text{
-    color : #b74b4b;
-    text-shadow: 0 0 10px #b74b4b;
+    color : var(--accent);
+    text-shadow: 0 0 10px var(--accent);
 }
 
 .content p{
@@ -233,15 +247,15 @@ section .main-container{
 }
 
 .typewriter-text {
-  color: #b74b4b;
-  text-shadow: 0 0 10px #b74b4b;
+  color: var(--accent);
+  text-shadow: 0 0 10px var(--accent);
   white-space: nowrap;
   overflow: hidden;
   margin-left : 20px;
 }
 
 .cursor {
-    color: #b74b4b;
+    color: var(--accent);
     font-weight: bold;
     animation: blink 0.7s infinite;
     margin-left: 4px;
@@ -260,9 +274,9 @@ section .main-container{
     width : 3rem;
     height : 3rem;
     background-color : transparent;
-    border : 0.2rem solid #b74b4b;
+    border : 0.2rem solid var(--accent);
     border-radius : 50%;
-    color : #b74b4b;
+    color : var(--accent);
     margin : 5px 15px;
     font-size : 1.5rem;
     transition : 0.2s linear;
@@ -270,17 +284,17 @@ section .main-container{
 
 .social-links i:hover{
     scale : 1.3;
-    color : black;
-    background-color: #b74b4b;
-    filter : drop-shadow(0 0 10px #b74b4b);
+    color : var(--bg);
+    background-color: var(--accent);
+    filter : drop-shadow(0 0 10px var(--accent));
 }
 
 .content button{
     width :50%;
     height : 6vh;
     margin : 30px;
-    background-color : #b74b4b;
-    color : white;
+    background-color : var(--accent);
+    color : var(--bg);
     border : none;
     outline : none;
     font-size: 120%;
@@ -292,11 +306,11 @@ section .main-container{
 
 .content button:hover{
     scale : 1.1;
-    color : #b74b4b;
-    border : 2px solid #b74b4b;
+    color : var(--accent);
+    border : 2px solid var(--accent);
     background-color: transparent;
     font-weight : 700;
-    box-shadow : 0 0 40px #b74b4b;
+    box-shadow : 0 0 34px var(--shadow-accent);
 }
 
 .interactive-lab {
@@ -306,7 +320,7 @@ section .main-container{
     align-items: center;
     overflow: hidden;
     padding: 90px 8vw;
-    background: #020202;
+    background: var(--bg);
     isolation: isolate;
 }
 
@@ -317,8 +331,8 @@ section .main-container{
     z-index: 1;
     pointer-events: none;
     background:
-        radial-gradient(circle at 75% 45%, rgba(70, 247, 215, 0.2), transparent 32%),
-        radial-gradient(circle at 82% 25%, rgba(106, 167, 255, 0.16), transparent 28%),
+        radial-gradient(circle at 75% 45%, rgba(70, 247, 168, 0.2), transparent 32%),
+        radial-gradient(circle at 82% 25%, rgba(244, 163, 64, 0.14), transparent 28%),
         linear-gradient(90deg, rgba(0, 0, 0, 0.96) 0%, rgba(0, 0, 0, 0.78) 38%, rgba(0, 0, 0, 0.18) 100%);
 }
 
@@ -351,11 +365,11 @@ section .main-container{
     position: relative;
     z-index: 2;
     max-width: 660px;
-    color: white;
+    color: var(--text);
 }
 
 .lab-kicker {
-    color: #46f7d7;
+    color: var(--accent);
     font-size: 0.9rem;
     font-weight: 700;
     letter-spacing: 0.12em;
@@ -364,17 +378,17 @@ section .main-container{
 }
 
 .lab-content h2 {
-    color: white;
+    color: var(--text);
     font-size: clamp(2.4rem, 5vw, 5.2rem);
     line-height: 1;
     font-weight: 800;
     max-width: 760px;
     margin-bottom: 24px;
-    text-shadow: 0 0 24px rgba(183, 75, 75, 0.45);
+    text-shadow: 0 0 24px rgba(244, 163, 64, 0.32);
 }
 
 .lab-content p {
-    color: #e7e7e7;
+    color: var(--muted);
     font-size: 1rem;
     line-height: 1.8;
     max-width: 590px;
@@ -386,9 +400,9 @@ section .main-container{
     gap: 8px;
     margin-top: 28px;
     padding: 6px;
-    border: 1px solid rgba(255, 255, 255, 0.16);
+    border: 1px solid var(--line);
     border-radius: 8px;
-    background: rgba(8, 8, 10, 0.72);
+    background: rgba(11, 16, 13, 0.74);
     backdrop-filter: blur(10px);
 }
 
@@ -411,16 +425,16 @@ section .main-container{
 
 .lab-controls button:hover,
 .lab-controls button:focus-visible {
-    border-color: rgba(70, 247, 215, 0.7);
-    color: #46f7d7;
+    border-color: rgba(70, 247, 168, 0.7);
+    color: var(--accent);
     transform: translateY(-2px);
     outline: none;
 }
 
 .lab-controls button.is-active {
-    background: #b74b4b;
-    color: white;
-    box-shadow: 0 0 22px rgba(183, 75, 75, 0.58);
+    background: var(--accent);
+    color: var(--bg);
+    box-shadow: 0 0 22px var(--shadow-accent);
 }
 
 .lab-highlights {
@@ -434,11 +448,11 @@ section .main-container{
 .lab-highlight {
     min-width: 0;
     padding-left: 14px;
-    border-left: 2px solid #46f7d7;
+    border-left: 2px solid var(--accent);
 }
 
 .lab-highlight:nth-child(2) {
-    border-left-color: #b74b4b;
+    border-left-color: var(--accent);
 }
 
 .lab-highlight:nth-child(3) {
@@ -471,7 +485,7 @@ section .main-container{
     .about .about-details{
         display: flex;
         justify-content: space-between;
-        align-items: center; 
+        align-items: center;
     }
     section .title{
             display: flex;
@@ -494,7 +508,7 @@ section .main-container{
         position : absolute;
         height : 3px;
         width : 100%;
-        background : #b74b4b;
+        background : var(--accent);
         left:0;
         bottom : 0;
     }
@@ -509,7 +523,7 @@ section .main-container{
     .about .about-details .left{
         width : 45%;
     }
- 
+
     .about .left img{
         height : 400px;
         width : 400px;
@@ -536,21 +550,21 @@ section .main-container{
 }
 
 section .button button{
-    outline : none; 
+    outline : none;
     padding : 8px 16px;
     border-radius : 4px;
     font-size : 25px;
     font-weight : 400;
-    background : #b74b4b;
+    background : var(--accent);
     color : #f1f1f1;
     border : 2px solid transparent;
     cursor : pointer;
     transition : all 0.4s ease;
     }
 section .button button:hover{
-border-color: #b74b4b;
+border-color: var(--accent);
 background-color : #f1f1f1;
-color : #b74b4b
+color : var(--accent)
 }
 .skills{
 background : black;
@@ -586,7 +600,7 @@ text-align: center;
 
 .skills-details .boxes .topic {
 font-size: 18px;
-color: #b74b4b;
+color: var(--accent);
 font-weight: 500;
 margin-bottom: 10px;
 }
@@ -594,7 +608,7 @@ margin-bottom: 10px;
 .skills-details .boxes .per {
 font-size: 60px;
 font-weight:300;
-color: #b74b4b;
+color: var(--accent);
 font-family : 'Poppins', sans-serif;
 }
 
@@ -634,35 +648,35 @@ text-transform: capitalize;
     grid-template-columns: repeat(2, 1fr);
     gap: 30px 40px;
 }
-  
+
 .box {
     text-align: center;
 }
-  
+
 .boxes .topic {
     font-size: 20px;
-    color: #b74b4b;
+    color: var(--accent);
     font-weight: 500;
     margin-bottom: 10px;
 }
-  
+
 .boxes .per {
     font-size: 50px;
     font-weight: bold;
-    color: #b74b4b;
+    color: var(--accent);
 }
 .services {
     background: #000;
     padding: 60px 0;
   }
-  
+
   .services .boxes {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 20px;
   }
-  
+
   .services .box {
     background: #111;
     color: white;
@@ -673,58 +687,58 @@ text-transform: capitalize;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.0);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
-  
+
   .services .box:hover {
-    background-color: #b74b4b; /* red background on hover */
+    background-color: var(--accent); /* red background on hover */
     transform: translateY(-10px);
     box-shadow: 0 8px 20px rgba(183, 75, 75, 0.6);
   }
-  
+
   /* Icon circle turns white on hover */
   .services .box:hover .icon {
     background-color: white;
   }
-  
+
   /* Icon color becomes red on hover */
   .services .box:hover .icon i {
-    color: #b74b4b;
+    color: var(--accent);
   }
-  
+
   /* Change text and heading to white on hover */
   .services .box:hover .topic,
   .services .box:hover p {
     color: white;
   }
-  
+
   .services .icon {
     width: 80px;
     height: 80px;
-    background-color: #b74b4b;
+    background-color: var(--accent);
     border-radius: 50%;
     margin: 0 auto 20px;
     display: flex;
     justify-content: center;
     align-items: center;
   }
-  
+
   .services .icon i {
     color: white;
     font-size: 2rem;
   }
-  
+
   .services .topic {
     font-size: 20px;
     font-weight: 600;
-    color: #b74b4b;
+    color: var(--accent);
     margin-bottom: 10px;
   }
-  
+
   .services .box p {
     color: #ccc;
     font-size: 0.95rem;
     line-height: 1.5;
   }
-  
+
 .contact{
     background : black;
 }
@@ -739,7 +753,7 @@ text-transform: capitalize;
 }
 
 footer{
-    background : #b74b4b;
+    background : var(--accent);
     padding : 15px 0;
     text-align:center;
     font-family :'Poppins',sans-serif;
@@ -761,7 +775,7 @@ footer .text span a:hover{
     bottom : 20px;
     right : 20px;
     color : #fff;
-    background : #b74b4b;
+    background : var(--accent);
     padding : 7px 12px;
     font-size:18px;
     border-radius : 6px;
@@ -952,7 +966,7 @@ footer .text span a:hover{
 
     .skills-details .boxes .per{
         font-size : 50px;
-        color : #b74b4b
+        color : var(--accent)
     }
 }
 .timeline-container-vertical {
@@ -1075,40 +1089,40 @@ footer .text span a:hover{
     padding: 60px 20px;
     color: white;
   }
-  
+
   .form-container {
     max-width: 700px;
     margin: 0 auto;
   }
-  
+
   .form-row {
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
   }
-  
+
   .form-group {
     flex: 1 1 45%;
     display: flex;
     flex-direction: column;
   }
-  
+
   .form-group.full {
     flex: 1 1 100%;
     margin-top: 20px;
   }
-  
+
   .form-group label {
     margin-bottom: 8px;
     font-weight: 600;
     color: #fff;
   }
-  
+
   .form-group i {
-    color: #b74b4b;
+    color: var(--accent);
     margin-right: 8px;
   }
-  
+
   input, textarea {
     padding: 15px;
     background: #161622;
@@ -1118,14 +1132,14 @@ footer .text span a:hover{
     font-size: 1rem;
     font-family: 'Poppins', sans-serif;
   }
-  
+
   textarea {
     min-height: 140px;
     resize: vertical;
   }
-  
+
   button[type="submit"] {
-    background: #b74b4b;
+    background: var(--accent);
     color: white;
     border: none;
     padding: 14px 30px;
@@ -1135,11 +1149,11 @@ footer .text span a:hover{
     transition: 0.3s ease;
     width: 100%;
   }
-  
+
   button[type="submit"]:hover {
     background: white;
-    color: #b74b4b;
-    border: 2px solid #b74b4b;
+    color: var(--accent);
+    border: 2px solid var(--accent);
   }
 
   .contact-section {
@@ -1148,7 +1162,7 @@ footer .text span a:hover{
     padding: 80px 20px;
     font-family: 'Poppins', sans-serif;
   }
-  
+
   .contact-container {
     max-width: 800px;
     margin: auto;
@@ -1157,45 +1171,45 @@ footer .text span a:hover{
     border-radius: 20px;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
   }
-  
+
   .contact-header h2 {
     font-size: 48px;
     margin: 0;
     font-weight: 800;
   }
-  
+
   .contact-header .dot {
-    color: #b74b4b;
+    color: var(--accent);
   }
-  
+
   .contact-header p {
     color: #ccc;
     margin-bottom: 40px;
   }
-  
+
   .contact-form .input-row {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
   }
-  
+
   .input-group {
     flex: 1;
     display: flex;
     flex-direction: column;
   }
-  
+
   .input-group.full-width {
     width: 100%;
     margin-top: 20px;
   }
-  
+
   .input-group label {
     margin-bottom: 8px;
     font-weight: 600;
     color: #b5b3c0;
   }
-  
+
   .input-group input,
   .input-group textarea {
     background: #161622;
@@ -1206,12 +1220,12 @@ footer .text span a:hover{
     font-size: 16px;
     resize: none;
   }
-  
+
   .input-group input::placeholder,
   .input-group textarea::placeholder {
     color: #888;
   }
-  
+
   .send-button {
     margin-top: 30px;
     padding: 14px 28px;
@@ -1223,15 +1237,15 @@ footer .text span a:hover{
     cursor: pointer;
     transition: background 0.3s ease;
   }
-  
+
   .send-button:hover {
     background: #8b43e0;
   }
-  
+
   .recaptcha {
     margin-top: 30px;
   }
-  
+
   .footnote {
     text-align: center;
     margin-top: 30px;
@@ -1252,7 +1266,7 @@ footer .text span a:hover{
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.6);
   }
-  
+
   /* Modal Content */
   .modal-content {
     background-color: #fff;
@@ -1265,7 +1279,7 @@ footer .text span a:hover{
     color: #000;
     position: relative;
   }
-  
+
   /* Close Button */
   .close {
     color: #aaa;
@@ -1276,12 +1290,12 @@ footer .text span a:hover{
     font-weight: bold;
     cursor: pointer;
   }
-  
+
   .close:hover,
   .close:focus {
     color: #000;
   }
-  
+
 
   /* === INTERACTIVE TIMELINE BOX === */
 
@@ -1295,27 +1309,27 @@ footer .text span a:hover{
     cursor: pointer;
     max-width: 500px;
   }
-  
+
   /* Hover effect to simulate floating and color change */
   .timeline-box:hover {
     transform: translateY(-10px) scale(1.03);
     background-color: #2e2a35;
     box-shadow: 0 12px 20px rgba(0, 0, 0, 0.5);
   }
-  
+
   /* Optional: Zoom-in animation from AOS */
   [data-aos="zoom-in"] {
     transition: all 0.6s ease;
     transform: scale(0.9);
     opacity: 0;
   }
-  
+
   [data-aos="zoom-in"].aos-animate {
     transform: scale(1);
     opacity: 1;
   }
-  
-  
+
+
   .timeline-box {
     background: #221f29;
     color: #fff;
@@ -1327,26 +1341,26 @@ footer .text span a:hover{
     cursor: pointer;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   }
-  
+
   .timeline-box:hover {
     background: #2e2b36;
     transform: translateY(-6px);
     box-shadow: 0 6px 16px rgba(255, 255, 255, 0.15);
   }
-  
+
   .timeline-box h3 {
     margin-top: 0;
     font-size: 18px;
     margin-bottom: 6px;
     text-align: left;
   }
-  
+
   .timeline-box p {
     font-size: 15px;
     margin-bottom: 4px;
     text-align: left;
   }
-  
+
   .timeline-box .timeline-date {
     font-size: 14px;
     color: #aaa;
@@ -1354,7 +1368,7 @@ footer .text span a:hover{
     text-align: left;
     margin-top: 5px;
   }
-  
+
   /* Modal Styling */
   .timeline-modal {
     display: none;
@@ -1364,7 +1378,7 @@ footer .text span a:hover{
     width: 100%; height: 100%;
     background-color: rgba(0, 0, 0, 0.6);
   }
-  
+
   .timeline-modal-content {
     background: #1e1e2f;
     margin: 10% auto;
@@ -1375,17 +1389,17 @@ footer .text span a:hover{
     color: #fff;
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
   }
-  
+
   .timeline-modal-content h2 {
     margin-top: 0;
     font-size: 24px;
   }
-  
+
   .timeline-modal-content p {
     font-size: 16px;
     line-height: 1.6;
   }
-  
+
 /* Modal background */
 .timeline-modal {
     display: none;
@@ -1401,7 +1415,7 @@ footer .text span a:hover{
     align-items: center;
     transition: background-color 0.3s ease-in-out;
   }
-  
+
   /* Modal box content */
   .timeline-modal-content {
     background: #221f29;
@@ -1415,7 +1429,7 @@ footer .text span a:hover{
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
     animation: floatIn 0.3s ease-out;
   }
-  
+
   @keyframes floatIn {
     from {
       transform: scale(0.9);
@@ -1442,7 +1456,7 @@ footer .text span a:hover{
     z-index: 999;
     transition: all 0.3s ease;
   }
-  
+
   /* Modal Content */
   .modal-content-box {
     background: white;
@@ -1456,12 +1470,12 @@ footer .text span a:hover{
     text-align: center;
     animation: fadeIn 0.2s ease;
   }
-  
+
   /* Fade-Out Animation */
   .fade-out {
     animation: fadeOut 0.18s ease forwards;
   }
-  
+
   @keyframes fadeOut {
     from {
       opacity: 1;
@@ -1472,7 +1486,7 @@ footer .text span a:hover{
       transform: scale(0.92);
     }
   }
-  
+
   @keyframes fadeIn {
     from {
       opacity: 0;
@@ -1483,7 +1497,7 @@ footer .text span a:hover{
       transform: scale(1);
     }
   }
-  
+
   /* Optional: Prevent scroll blur behind modal */
   .modal-open {
     overflow: hidden;

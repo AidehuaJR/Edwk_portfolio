@@ -10,7 +10,7 @@ body {
     align-items: center;
     overflow: hidden;
     padding: 90px 8vw;
-    background: #020202;
+    background: var(--bg);
     isolation: isolate;
 }
 
@@ -21,8 +21,8 @@ body {
     z-index: 1;
     pointer-events: none;
     background:
-        radial-gradient(circle at 75% 45%, rgba(70, 247, 215, 0.2), transparent 32%),
-        radial-gradient(circle at 82% 25%, rgba(106, 167, 255, 0.16), transparent 28%),
+        radial-gradient(circle at 75% 45%, rgba(70, 247, 168, 0.2), transparent 32%),
+        radial-gradient(circle at 82% 25%, rgba(244, 163, 64, 0.14), transparent 28%),
         linear-gradient(90deg, rgba(0, 0, 0, 0.96) 0%, rgba(0, 0, 0, 0.78) 38%, rgba(0, 0, 0, 0.18) 100%);
 }
 
@@ -55,11 +55,11 @@ body {
     position: relative;
     z-index: 2;
     max-width: 660px;
-    color: white;
+    color: var(--text);
 }
 
 .lab-kicker {
-    color: #46f7d7;
+    color: var(--accent);
     font-size: 0.9rem;
     font-weight: 700;
     letter-spacing: 0.12em;
@@ -68,17 +68,17 @@ body {
 }
 
 .lab-content h2 {
-    color: white;
+    color: var(--text);
     font-size: clamp(2.4rem, 5vw, 5.2rem);
     line-height: 1;
     font-weight: 800;
     max-width: 760px;
     margin-bottom: 24px;
-    text-shadow: 0 0 24px rgba(183, 75, 75, 0.45);
+    text-shadow: 0 0 24px rgba(244, 163, 64, 0.32);
 }
 
 .lab-content p {
-    color: #e7e7e7;
+    color: var(--muted);
     font-size: 1rem;
     line-height: 1.8;
     max-width: 590px;
@@ -90,9 +90,9 @@ body {
     gap: 8px;
     margin-top: 28px;
     padding: 6px;
-    border: 1px solid rgba(255, 255, 255, 0.16);
+    border: 1px solid var(--line);
     border-radius: 8px;
-    background: rgba(8, 8, 10, 0.72);
+    background: rgba(11, 16, 13, 0.74);
     backdrop-filter: blur(10px);
 }
 
@@ -115,16 +115,16 @@ body {
 
 .lab-controls button:hover,
 .lab-controls button:focus-visible {
-    border-color: rgba(70, 247, 215, 0.7);
-    color: #46f7d7;
+    border-color: rgba(70, 247, 168, 0.7);
+    color: var(--accent);
     transform: translateY(-2px);
     outline: none;
 }
 
 .lab-controls button.is-active {
-    background: #b74b4b;
-    color: white;
-    box-shadow: 0 0 22px rgba(183, 75, 75, 0.58);
+    background: var(--accent);
+    color: var(--bg);
+    box-shadow: 0 0 22px var(--shadow-accent);
 }
 
 .lab-highlights {
@@ -138,11 +138,11 @@ body {
 .lab-highlight {
     min-width: 0;
     padding-left: 14px;
-    border-left: 2px solid #46f7d7;
+    border-left: 2px solid var(--accent);
 }
 
 .lab-highlight:nth-child(2) {
-    border-left-color: #b74b4b;
+    border-left-color: var(--accent);
 }
 
 .lab-highlight:nth-child(3) {
