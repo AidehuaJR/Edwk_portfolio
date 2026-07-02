@@ -1,7 +1,7 @@
 import * as THREE from "https://unpkg.com/three@0.160.0/build/three.module.js";
 
 const stylesheetId = "holographic-lab-styles";
-const stylesheetHref = "holographic-lab.css?v=cream-avocado-lab-15";
+const stylesheetHref = "holographic-lab.css?v=contact-vortex-17";
 
 if (!document.getElementById(stylesheetId)) {
   const link = document.createElement("link");
@@ -52,9 +52,9 @@ function initHolographicLab() {
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const modeButtons = Array.from(document.querySelectorAll("[data-scene-mode]"));
   const modeTargets = {
-    hybrid: { terrain: 0.62, vortex: 0.82, lines: 0.5, stars: 0.32 },
-    terrain: { terrain: 0.82, vortex: 0.16, lines: 0.12, stars: 0.22 },
-    vortex: { terrain: 0.18, vortex: 0.95, lines: 0.72, stars: 0.38 }
+    hybrid: { terrain: 0.62, vortex: 0.94, lines: 0.78, stars: 0.22 },
+    terrain: { terrain: 0.82, vortex: 0.22, lines: 0.18, stars: 0.16 },
+    vortex: { terrain: 0.16, vortex: 1, lines: 0.96, stars: 0.24 }
   };
   let mode = "hybrid";
   let isVisible = true;
@@ -196,11 +196,11 @@ function createVortex() {
   geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
 
   const pointsMaterial = new THREE.PointsMaterial({
-    color: 0xbc533b,
-    size: 0.055,
+    color: 0x152822,
+    size: 0.078,
     transparent: true,
-    opacity: 0.82,
-    blending: THREE.AdditiveBlending,
+    opacity: 0.94,
+    blending: THREE.NormalBlending,
     depthWrite: false
   });
 
@@ -220,10 +220,10 @@ function createVortex() {
     );
 
     const material = new THREE.LineBasicMaterial({
-      color: arm % 2 === 0 ? 0xbc533b : 0xafa34a,
+      color: arm % 2 === 0 ? 0xbc533b : 0x152822,
       transparent: true,
-      opacity: 0.5,
-      blending: THREE.AdditiveBlending,
+      opacity: 0.78,
+      blending: THREE.NormalBlending,
       depthWrite: false
     });
 
