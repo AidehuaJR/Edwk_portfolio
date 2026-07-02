@@ -1373,8 +1373,14 @@ footer .text span a {
     background: #8b43e0;
   }
 
-  .recaptcha {
+.recaptcha {
     margin-top: 30px;
+  }
+
+  .recaptcha-status {
+    margin-top: 10px;
+    color: var(--muted);
+    font-size: 0.9rem;
   }
 
   .footnote {
@@ -1865,9 +1871,22 @@ button[type="submit"],
     box-shadow: 0 14px 26px rgba(188, 83, 59, 0.2);
 }
 
+button[type="submit"]:disabled,
+.send-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.58;
+    box-shadow: none;
+}
+
 button[type="submit"]:hover,
 .send-button:hover {
     background: var(--coal);
+    color: var(--cream);
+}
+
+button[type="submit"]:disabled:hover,
+.send-button:disabled:hover {
+    background: var(--ketchup);
     color: var(--cream);
 }
 

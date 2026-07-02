@@ -45,6 +45,7 @@ function typeEffect() {
 
 document.addEventListener("DOMContentLoaded", () => {
   typeEffect(); // Start typewriter effect
+  setupContactCaptcha();
 
   // ===== Modal Functionality =====
   const modalBg = document.getElementById("modal-bg");
@@ -137,3 +138,48 @@ document.addEventListener("DOMContentLoaded", () => {
 document.getElementById("hireBtn").addEventListener("click", () => {
   document.querySelector("#contact").scrollIntoView({ behavior: "smooth" });
 });
+
+function setupContactCaptcha() {
+  const form = document.querySelector(".contact-form");
+  const captcha = document.querySelector(".g-recaptcha");
+  const submitButton = document.querySelector(".send-button");
+  const status = document.querySelector(".recaptcha-status");
+
+  if (!form || !captcha || !submitButton || !status) {
+    return;
+  }
+
+  const formAction = form.getAttribute("action") || "";
+  const siteKey = captcha.dataset.sitekey || "";
+  const hasFormId = !formAction.includes("YOUR_FORM_ID");
+  const hasSiteKey = !siteKey.includes("YOUR_RECAPTCHA_SITE_KEY");
+
+  if (!hasFormId || !hasSiteKey) {
+    status.textContent = "Setup needed: add your Formspree form ID and reCAPTCHA site key.";
+    submitButton.disabled = true;
+  }
+
+  window.onPortfolioCaptchaSuccess = function () {
+    if (hasFormId && hasSiteKey) {
+      submitButton.disabled = false;
+      status.textContent = "reCAPTCHA complete. You can send the message.";
+    }
+  };
+
+  window.onPortfolioCaptchaExpired = function () {
+    submitButton.disabled = true;
+    status.textContent = "reCAPTCHA expired. Please verify again.";
+  };
+
+  form.addEventListener("submit", (event) => {
+    const token = typeof grecaptcha !== "undefined" ? grecaptcha.getResponse() : "";
+
+    if (!hasFormId || !hasSiteKey || !token) {
+      event.preventDefault();
+      status.textContent = !hasFormId || !hasSiteKey
+        ? "Setup needed: replace the placeholder Formspree ID and reCAPTCHA site key."
+        : "Please complete the reCAPTCHA before sending.";
+      submitButton.disabled = true;
+    }
+  });
+}

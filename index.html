@@ -3,8 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <title>Aidehua's personal Website</title>
-        <link rel ="stylesheet" href = "style.css?v=rounded-skills-18">
-        <link rel="stylesheet" href="jake-hero.css?v=rounded-skills-18">
+        <link rel ="stylesheet" href = "style.css?v=recaptcha-setup-19">
+        <link rel="stylesheet" href="jake-hero.css?v=recaptcha-setup-19">
         <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
         <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
@@ -339,7 +339,7 @@
                 <h2>Contact<span class="dot">.</span></h2>
                 <p>Get in Touch</p>
             </div>
-            <form action="https://formspree.io/f/yourFormID" method="POST" class="contact-form">
+            <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="contact-form" data-recaptcha-required="true">
                 <div class="input-row">
                 <div class="input-group">
                     <label><i class="fas fa-user"></i> Name</label>
@@ -356,15 +356,20 @@
                 <textarea name="message" rows="5" required placeholder="Write your message here..."></textarea>
                 </div>
         
-                <!-- Optional: Google reCAPTCHA -->
                 <div class="recaptcha">
-                <div class="g-recaptcha" data-sitekey="your-site-key"></div>
+                <div
+                    class="g-recaptcha"
+                    data-sitekey="YOUR_RECAPTCHA_SITE_KEY"
+                    data-callback="onPortfolioCaptchaSuccess"
+                    data-expired-callback="onPortfolioCaptchaExpired"
+                ></div>
+                <p class="recaptcha-status" role="status">Complete the reCAPTCHA before sending.</p>
                 </div>
-        
-                <button type="submit" class="send-button">Send Message</button>
+
+                <button type="submit" class="send-button" disabled>Send Message</button>
             </form>
-        
-            <p class="footnote">Protected by reCAPTCHA Enterprise.</p>
+
+            <p class="footnote">Protected by Google reCAPTCHA and Formspree verification.</p>
             </div>
         </section>
   
@@ -397,8 +402,8 @@
         </script>
 
         <script src="script.js"></script>
-        <script type="module" src="jake-hero.js?v=rounded-skills-18"></script>
-        <script type="module" src="holographic-lab.js?v=rounded-skills-18"></script>
+        <script type="module" src="jake-hero.js?v=recaptcha-setup-19"></script>
+        <script type="module" src="holographic-lab.js?v=recaptcha-setup-19"></script>
 
         <div id="modal-bg" class="modal-background" onclick="closeModal(event)">
             <div id="modal-content" class="modal-content-box">
