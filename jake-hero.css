@@ -1,0 +1,313 @@
+.hero-home {
+    position: relative;
+    min-height: 90vh;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 30% 48%, rgba(183, 75, 75, 0.2), transparent 30%),
+        radial-gradient(circle at 73% 36%, rgba(70, 247, 215, 0.12), transparent 28%),
+        #050505;
+    isolation: isolate;
+}
+
+.hero-home::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    background-size: 54px 54px;
+    mask-image: linear-gradient(90deg, transparent 0%, black 16%, black 84%, transparent 100%);
+}
+
+.hero-noise {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.18;
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.08) 0,
+        rgba(255, 255, 255, 0.08) 1px,
+        transparent 1px,
+        transparent 9px
+    );
+    mix-blend-mode: screen;
+}
+
+.hero-rail {
+    position: absolute;
+    left: 28px;
+    top: 18vh;
+    bottom: 10vh;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.44);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    writing-mode: vertical-rl;
+}
+
+.hero-shell {
+    position: relative;
+    z-index: 2;
+    min-height: 90vh;
+    max-width: 1220px;
+    margin: 0 auto;
+    padding: 32px 56px 56px 96px;
+    display: grid;
+    grid-template-columns: minmax(320px, 0.96fr) minmax(360px, 1.04fr);
+    gap: clamp(32px, 6vw, 86px);
+}
+
+.jake-stage {
+    position: relative;
+    min-height: min(72vh, 650px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#jake-model-canvas {
+    position: absolute;
+    inset: -8% -6% -4%;
+    z-index: 2;
+    width: 112%;
+    height: 112%;
+    display: block;
+    cursor: grab;
+}
+
+#jake-model-canvas:active {
+    cursor: grabbing;
+}
+
+.jake-stage::before,
+.jake-stage::after,
+.jake-orbit {
+    content: "";
+    position: absolute;
+    inset: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+}
+
+.jake-stage::before {
+    z-index: 0;
+    width: min(36vw, 520px);
+    aspect-ratio: 1;
+    background:
+        radial-gradient(circle, rgba(183, 75, 75, 0.36), rgba(183, 75, 75, 0.08) 42%, transparent 70%);
+    filter: blur(6px);
+}
+
+.jake-stage::after {
+    z-index: 1;
+    width: min(30vw, 440px);
+    aspect-ratio: 1;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow:
+        inset 0 0 46px rgba(70, 247, 215, 0.12),
+        0 0 70px rgba(183, 75, 75, 0.18);
+}
+
+.jake-orbit {
+    z-index: 1;
+    width: min(25vw, 360px);
+    aspect-ratio: 1;
+    border: 1px dashed rgba(70, 247, 215, 0.28);
+    animation: jakeOrbit 18s linear infinite;
+}
+
+.jake-loading {
+    position: relative;
+    z-index: 3;
+    color: rgba(255, 255, 255, 0.58);
+    font-size: 0.82rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    transition: opacity 0.25s ease;
+}
+
+.jake-stage.is-ready .jake-loading {
+    opacity: 0;
+}
+
+.jake-caption {
+    position: absolute;
+    left: 6%;
+    bottom: 18%;
+    z-index: 4;
+    padding-left: 16px;
+    border-left: 2px solid #46f7d7;
+    color: white;
+}
+
+.jake-caption span,
+.jake-caption strong {
+    display: block;
+}
+
+.jake-caption span {
+    color: rgba(255, 255, 255, 0.58);
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.jake-caption strong {
+    margin-top: 6px;
+    font-size: 0.96rem;
+}
+
+.hero-copy {
+    width: 100%;
+    max-width: 620px;
+}
+
+.hero-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+    color: #46f7d7;
+    font-size: 0.86rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.hero-status::before {
+    content: "";
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #46f7d7;
+    box-shadow: 0 0 18px #46f7d7;
+}
+
+.hero-copy h1 {
+    color: white;
+    max-width: 720px;
+    font-size: clamp(2.8rem, 7vw, 6.8rem);
+    line-height: 0.94;
+    font-weight: 800;
+    text-shadow: none;
+}
+
+.hero-copy .typewriter {
+    margin-top: 24px;
+}
+
+.hero-copy p:not(.hero-status) {
+    max-width: 590px;
+    color: #cfcfcf;
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+.hero-copy .social-links {
+    margin-top: 20px;
+}
+
+.hero-copy .button {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+}
+
+.hero-copy .button button {
+    margin: 20px 0 0;
+}
+
+.hero-secondary {
+    margin-top: 20px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 18px;
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    border-radius: 6px;
+    color: white;
+    font-size: 0.95rem;
+    font-weight: 700;
+    transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.hero-secondary:hover,
+.hero-secondary:focus-visible {
+    border-color: rgba(70, 247, 215, 0.8);
+    color: #46f7d7;
+    outline: none;
+    transform: translateY(-2px);
+}
+
+@keyframes jakeOrbit {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+@media (max-width: 980px) {
+    .hero-rail {
+        display: none;
+    }
+
+    .hero-shell {
+        padding: 26px 24px 58px;
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .jake-stage {
+        min-height: 46vh;
+        order: 1;
+    }
+
+    .hero-copy {
+        order: 2;
+    }
+
+    .hero-copy h1 {
+        font-size: clamp(2.35rem, 13vw, 4.4rem);
+    }
+
+    .jake-stage::before {
+        width: min(78vw, 430px);
+    }
+
+    .jake-stage::after {
+        width: min(68vw, 360px);
+    }
+
+    .jake-orbit {
+        width: min(58vw, 300px);
+    }
+
+    .jake-caption {
+        left: 0;
+        bottom: 2%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .jake-orbit {
+        animation: none;
+    }
+}

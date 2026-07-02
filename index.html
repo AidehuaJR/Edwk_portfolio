@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <title>Aidehua's personal Website</title>
         <link rel ="stylesheet" href = "style.css">
+        <link rel="stylesheet" href="jake-hero.css">
         <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
         <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
@@ -39,18 +40,31 @@
                 </div>
               </div>
         </nav>
-        <section class="home" id="home">
-            <div class="main-container">
-                <div class="image"data-aos ="zoom-in" data-aos-duration ="3000">
-                    <img src="main.jpg" alt="">
+        <section class="home hero-home" id="home">
+            <div class="hero-noise" aria-hidden="true"></div>
+            <div class="hero-rail" aria-label="Portfolio status">
+                <span>session</span>
+                <span>creative engineering</span>
+                <span>scroll</span>
+            </div>
+            <div class="main-container hero-shell">
+                <div class="jake-stage" data-aos ="zoom-in" data-aos-duration ="1800" aria-label="Floating Jake 3D model">
+                    <canvas id="jake-model-canvas"></canvas>
+                    <div class="jake-loading" aria-hidden="true">loading Jake</div>
+                    <div class="jake-orbit" aria-hidden="true"></div>
+                    <div class="jake-caption">
+                        <span>live 3D asset</span>
+                        <strong>Jake_floating.stl</strong>
+                    </div>
                 </div>
-                <div class="content">
-                    <h1 data-aos = "fade-left" data-aos-duration ="1500" data-aos-delay="700">Hey I'm <span>Aidehua</span></h1>
+                <div class="content hero-copy">
+                    <p class="hero-status" data-aos="fade-left" data-aos-duration="1200" data-aos-delay="300">Open to software and game development roles</p>
+                    <h1 data-aos = "fade-left" data-aos-duration ="1500" data-aos-delay="500">I build playful systems from screen to simulation.</h1>
                     <div class="typewriter" data-aos="fade-right" data-aos-duration ="1500" data-aos-delay="900">
-                        I'm a 
+                        I'm a
                         <span class="typewriter-text"></span><span class="cursor">|</span>
                     </div>
-                    <p data-aos = "flip-down" data-aos-duration="1500" data-aos-delay="1100">I'm an international student from China with roughly over 5 years of coding experience in various fields, including software engineering and cryptographics. </p>
+                    <p data-aos = "flip-down" data-aos-duration="1500" data-aos-delay="1100">I'm an international student from China with 5+ years of coding experience across software engineering, cryptography, and game development. I like portfolios that prove the work by becoming part of the work.</p>
                     <div class="social-links">
                         <a href="https://github.com/AidehuaJR" data-aos ="fade-up" data-aos-duration="1500" data-aos="1300"><i class = "fa-brands fa-github"></i></a>
                         <a href="https://www.linkedin.com/in/edward-kim-700300247/" data-aos ="fade-up" data-aos-duration="1500" data-aos="1400"><i class = "fa-brands fa-linkedin"></i></a>
@@ -60,7 +74,8 @@
                     </div>
                     <div class="button">
                         <button id="hireBtn">Hire me</button>
-                        
+                        <a class="hero-secondary" href="#lab">See the lab</a>
+
                     </div>
                 </div>
             </div>
@@ -382,6 +397,7 @@
         </script>
 
         <script src="script.js"></script>
+        <script type="module" src="jake-hero.js"></script>
         <script type="module" src="holographic-lab.js"></script>
 
         <div id="modal-bg" class="modal-background" onclick="closeModal(event)">
