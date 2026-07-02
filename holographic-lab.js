@@ -1,7 +1,7 @@
 import * as THREE from "https://unpkg.com/three@0.160.0/build/three.module.js";
 
 const stylesheetId = "holographic-lab-styles";
-const stylesheetHref = "holographic-lab.css";
+const stylesheetHref = "holographic-lab.css?v=cream-avocado-lab-15";
 
 if (!document.getElementById(stylesheetId)) {
   const link = document.createElement("link");
@@ -31,7 +31,7 @@ function initHolographicLab() {
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.6));
 
   const scene = new THREE.Scene();
-  scene.fog = new THREE.FogExp2(0x050505, 0.035);
+  scene.fog = new THREE.FogExp2(0xf2e6c0, 0.032);
 
   const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
   camera.position.set(0, 6.2, 15);
@@ -139,11 +139,11 @@ function createTerrain() {
   const positions = geometry.attributes.position;
   const basePositions = new Float32Array(positions.array);
   const material = new THREE.MeshBasicMaterial({
-    color: 0xb74b4b,
+    color: 0xafa34a,
     wireframe: true,
     transparent: true,
     opacity: 0.62,
-    blending: THREE.AdditiveBlending,
+    blending: THREE.NormalBlending,
     depthWrite: false
   });
 
@@ -196,7 +196,7 @@ function createVortex() {
   geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
 
   const pointsMaterial = new THREE.PointsMaterial({
-    color: 0x46f7d7,
+    color: 0xbc533b,
     size: 0.055,
     transparent: true,
     opacity: 0.82,
@@ -220,7 +220,7 @@ function createVortex() {
     );
 
     const material = new THREE.LineBasicMaterial({
-      color: arm % 2 === 0 ? 0x46f7d7 : 0x6aa7ff,
+      color: arm % 2 === 0 ? 0xbc533b : 0xafa34a,
       transparent: true,
       opacity: 0.5,
       blending: THREE.AdditiveBlending,
@@ -289,11 +289,11 @@ function createStarField() {
   geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
 
   const material = new THREE.PointsMaterial({
-    color: 0x6aa7ff,
+    color: 0x152822,
     size: 0.035,
     transparent: true,
-    opacity: 0.32,
-    blending: THREE.AdditiveBlending,
+    opacity: 0.18,
+    blending: THREE.NormalBlending,
     depthWrite: false
   });
 
