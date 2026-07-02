@@ -2,16 +2,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@100;200;300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
 
 :root {
-    --bg: #050605;
-    --surface: #0b100d;
-    --surface-soft: #111910;
-    --text: #f4f7ee;
-    --muted: #aab4a3;
-    --accent: #46f7a8;
-    --accent-2: #d7ff5f;
-    --warm: #f4a340;
-    --line: rgba(244, 247, 238, 0.12);
-    --shadow-accent: rgba(70, 247, 168, 0.34);
+    --avocado: #afa34a;
+    --cream: #f2e6c0;
+    --coal: #152822;
+    --ketchup: #bc533b;
+    --bg: var(--cream);
+    --surface: #f8edca;
+    --surface-soft: #e7daa9;
+    --text: var(--coal);
+    --muted: #5a6754;
+    --accent: var(--avocado);
+    --accent-2: var(--ketchup);
+    --warm: #d68f4a;
+    --line: rgba(21, 40, 34, 0.16);
+    --shadow-accent: rgba(175, 163, 74, 0.34);
+    --coal-panel: #10231d;
 }
 
 *{
@@ -42,7 +47,7 @@ body{
 }
 
 ::-webkit-scrollbar-track{
-    background : #f1f1f1;
+    background : var(--surface);
 
 }
 
@@ -73,14 +78,14 @@ nav{
 }
 
 .logo{
-    color: white;
+    color: var(--coal);
     font-size: 2rem;
     font-weight: bold;
 }
 
 .logo span{
-    color :var(--accent);
-    text-shadow: 0 0 10px var(--accent);
+    color :var(--ketchup);
+    text-shadow: none;
 }
 
 .hamburg,
@@ -89,7 +94,7 @@ nav{
     position : absolute;
     right: 15px;
     top : 10px;
-    color : white;
+    color : var(--coal);
     opacity : 0;
     pointer-events:none;
     font-size:clamp(2.5rem,0.5rem + 5vw, 3rem);
@@ -103,7 +108,7 @@ nav{
 .nav-container .links a{
     position: relative;
     font-size : 1.2rem;
-    color : white;
+    color : var(--coal);
     margin : 0 14px;
     text-decoration : none;
     font-weight : 550;
@@ -117,7 +122,7 @@ nav{
     left : 0;
     width : 0%;
     height : 3px;
-    background-color: var(--accent);
+    background-color: var(--ketchup);
     transition : 0.2s linear;
 
 }
@@ -128,7 +133,7 @@ nav{
 }
 
 .nav-container .links a:hover{
-    color : var(--accent)
+    color : var(--ketchup)
 }
 
 .dropdown{
@@ -139,14 +144,14 @@ nav{
     width : 100%;
     height: auto;
     backdrop-filter: blur(4px) brightness(40%);
-    box-shadow: 0 0 20px black;
+    box-shadow: 0 18px 36px rgba(21, 40, 34, 0.18);
     transition: 0.2s linear;
 
 }
 
 .dropdown .links a{
     display:flex;
-    color : white;
+    color : var(--coal);
     text-decoration : none;
     justify-content: center;
     padding : 15px 0;
@@ -155,7 +160,7 @@ nav{
 }
 
 .dropdown .links a:hover{
-    background-color:var(--accent);
+    background-color:var(--avocado);
 
 }
 
@@ -320,7 +325,7 @@ section .main-container{
     align-items: center;
     overflow: hidden;
     padding: 90px 8vw;
-    background: var(--bg);
+    background: var(--coal-panel);
     isolation: isolate;
 }
 
@@ -331,9 +336,9 @@ section .main-container{
     z-index: 1;
     pointer-events: none;
     background:
-        radial-gradient(circle at 75% 45%, rgba(70, 247, 168, 0.2), transparent 32%),
-        radial-gradient(circle at 82% 25%, rgba(244, 163, 64, 0.14), transparent 28%),
-        linear-gradient(90deg, rgba(0, 0, 0, 0.96) 0%, rgba(0, 0, 0, 0.78) 38%, rgba(0, 0, 0, 0.18) 100%);
+        radial-gradient(circle at 75% 45%, rgba(175, 163, 74, 0.24), transparent 32%),
+        radial-gradient(circle at 82% 25%, rgba(188, 83, 59, 0.16), transparent 28%),
+        linear-gradient(90deg, rgba(21, 40, 34, 0.96) 0%, rgba(21, 40, 34, 0.74) 38%, rgba(21, 40, 34, 0.18) 100%);
 }
 
 #holographic-lab-canvas {
@@ -365,11 +370,11 @@ section .main-container{
     position: relative;
     z-index: 2;
     max-width: 660px;
-    color: var(--text);
+    color: var(--cream);
 }
 
 .lab-kicker {
-    color: var(--accent);
+    color: var(--surface-soft);
     font-size: 0.9rem;
     font-weight: 700;
     letter-spacing: 0.12em;
@@ -378,7 +383,7 @@ section .main-container{
 }
 
 .lab-content h2 {
-    color: var(--text);
+    color: var(--cream);
     font-size: clamp(2.4rem, 5vw, 5.2rem);
     line-height: 1;
     font-weight: 800;
@@ -388,7 +393,7 @@ section .main-container{
 }
 
 .lab-content p {
-    color: var(--muted);
+    color: rgba(242, 230, 192, 0.78);
     font-size: 1rem;
     line-height: 1.8;
     max-width: 590px;
@@ -402,7 +407,7 @@ section .main-container{
     padding: 6px;
     border: 1px solid var(--line);
     border-radius: 8px;
-    background: rgba(11, 16, 13, 0.74);
+    background: rgba(242, 230, 192, 0.08);
     backdrop-filter: blur(10px);
 }
 
@@ -781,6 +786,132 @@ footer .text span a:hover{
     border-radius : 6px;
     box-shadow : rgba(0,0,0,0.15);
     display : none;
+}
+
+/* Warm avocado palette pass */
+nav {
+    background: rgba(242, 230, 192, 0.86);
+    backdrop-filter: blur(14px);
+}
+
+section {
+    background: var(--bg);
+    color: var(--text);
+}
+
+section .title span,
+section .topic,
+.about-details .right p,
+.skills-details p,
+.skills-details .experience .exp,
+.contact .text,
+.contact .text p {
+    color: var(--text);
+}
+
+section .title span::before,
+section .title span::after {
+    background: var(--ketchup);
+}
+
+.about,
+.education,
+.contact {
+    background:
+        linear-gradient(180deg, rgba(175, 163, 74, 0.08), transparent 42%),
+        var(--bg);
+}
+
+.skills {
+    background: var(--surface-soft);
+}
+
+.services {
+    background: var(--cream);
+}
+
+.main-container .image,
+.about .left img,
+.services .box,
+.contact .text,
+.education-entry,
+.timeline-content,
+.modal-content,
+.project-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    box-shadow: 0 18px 48px rgba(21, 40, 34, 0.1);
+}
+
+.skills-details .boxes .topic,
+.boxes .topic,
+.services .topic,
+.skills-details .boxes .per,
+.boxes .per,
+.skills-details .experience .num {
+    color: var(--avocado);
+}
+
+.services .box {
+    color: var(--text);
+}
+
+.services .box p {
+    color: var(--muted);
+}
+
+.services .icon,
+section .button button,
+.content button,
+.scroll-button a {
+    background: var(--ketchup);
+    color: var(--cream);
+}
+
+.content button:hover,
+section .button button:hover {
+    border-color: var(--ketchup);
+    color: var(--ketchup);
+    background: transparent;
+    box-shadow: 0 0 28px rgba(188, 83, 59, 0.22);
+}
+
+.social-links i {
+    border-color: var(--avocado);
+    color: var(--avocado);
+}
+
+.social-links i:hover {
+    background: var(--avocado);
+    color: var(--coal);
+    filter: drop-shadow(0 0 12px rgba(175, 163, 74, 0.32));
+}
+
+.services .box:hover {
+    background: var(--coal-panel);
+    box-shadow: 0 18px 42px rgba(21, 40, 34, 0.24);
+}
+
+.services .box:hover .icon {
+    background: var(--cream);
+}
+
+.services .box:hover .icon i {
+    color: var(--ketchup);
+}
+
+.services .box:hover .topic,
+.services .box:hover p {
+    color: var(--cream);
+}
+
+footer {
+    background: var(--coal);
+}
+
+footer .text span,
+footer .text span a {
+    color: var(--cream);
 }
 
 @media (max-width:1000px){
@@ -1502,3 +1633,95 @@ footer .text span a:hover{
   .modal-open {
     overflow: hidden;
   }
+
+/* Final palette guard: cream base, avocado surfaces, coal text, ketchup accents. */
+body,
+section,
+.about,
+.education,
+.services,
+.contact {
+    background-color: var(--bg);
+    color: var(--text);
+}
+
+.skills {
+    background: var(--surface-soft);
+}
+
+.interactive-lab {
+    background: var(--coal-panel);
+}
+
+.modal-content,
+.modal-content-box,
+.services .box,
+.education-card,
+.education-entry,
+.timeline-content,
+.project-card,
+.contact .text,
+.skill-card,
+.box {
+    background: var(--surface);
+    color: var(--text);
+    border-color: var(--line);
+}
+
+.services .box:nth-child(2n),
+.education-entry:nth-child(2n),
+.timeline-content:nth-child(2n),
+.project-card:nth-child(2n),
+.skill-card:nth-child(2n) {
+    background: #eadcad;
+}
+
+.services .box:nth-child(3n),
+.education-entry:nth-child(3n),
+.timeline-content:nth-child(3n),
+.project-card:nth-child(3n),
+.skill-card:nth-child(3n) {
+    background: #f7ecc8;
+}
+
+.topic,
+section .topic,
+.services .topic,
+.boxes .topic,
+.skills-details .boxes .topic,
+.typewriter-text {
+    color: var(--avocado);
+}
+
+p,
+.services .box p,
+.skills-details p,
+.about-details .right p,
+.contact .text p {
+    color: var(--muted);
+}
+
+.content button,
+section .button button,
+.services .icon,
+.scroll-button a {
+    background: var(--ketchup);
+    color: var(--cream);
+}
+
+.content button:hover,
+section .button button:hover {
+    background: transparent;
+    border-color: var(--ketchup);
+    color: var(--ketchup);
+}
+
+.services .box:hover {
+    background: var(--coal-panel);
+    color: var(--cream);
+}
+
+.services .box:hover p,
+.services .box:hover .topic {
+    color: var(--cream);
+}

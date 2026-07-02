@@ -10,7 +10,7 @@ body {
     align-items: center;
     overflow: hidden;
     padding: 90px 8vw;
-    background: var(--bg);
+    background: var(--coal-panel);
     isolation: isolate;
 }
 
@@ -21,9 +21,9 @@ body {
     z-index: 1;
     pointer-events: none;
     background:
-        radial-gradient(circle at 75% 45%, rgba(70, 247, 168, 0.2), transparent 32%),
-        radial-gradient(circle at 82% 25%, rgba(244, 163, 64, 0.14), transparent 28%),
-        linear-gradient(90deg, rgba(0, 0, 0, 0.96) 0%, rgba(0, 0, 0, 0.78) 38%, rgba(0, 0, 0, 0.18) 100%);
+        radial-gradient(circle at 75% 45%, rgba(175, 163, 74, 0.24), transparent 32%),
+        radial-gradient(circle at 82% 25%, rgba(188, 83, 59, 0.16), transparent 28%),
+        linear-gradient(90deg, rgba(21, 40, 34, 0.96) 0%, rgba(21, 40, 34, 0.74) 38%, rgba(21, 40, 34, 0.18) 100%);
 }
 
 #holographic-lab-canvas {
@@ -55,7 +55,7 @@ body {
     position: relative;
     z-index: 2;
     max-width: 660px;
-    color: var(--text);
+    color: var(--cream);
 }
 
 .lab-kicker {
@@ -68,7 +68,7 @@ body {
 }
 
 .lab-content h2 {
-    color: var(--text);
+    color: var(--cream);
     font-size: clamp(2.4rem, 5vw, 5.2rem);
     line-height: 1;
     font-weight: 800;
@@ -78,7 +78,7 @@ body {
 }
 
 .lab-content p {
-    color: var(--muted);
+    color: rgba(242, 230, 192, 0.78);
     font-size: 1rem;
     line-height: 1.8;
     max-width: 590px;
@@ -92,7 +92,7 @@ body {
     padding: 6px;
     border: 1px solid var(--line);
     border-radius: 8px;
-    background: rgba(11, 16, 13, 0.74);
+    background: rgba(242, 230, 192, 0.08);
     backdrop-filter: blur(10px);
 }
 
