@@ -1871,6 +1871,45 @@ button[type="submit"]:hover,
     color: var(--cream);
 }
 
+.skills-details .boxes {
+    gap: 22px;
+}
+
+.skills-details .box {
+    min-height: 138px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 18px;
+    border-radius: 28px;
+    background:
+        radial-gradient(circle at 28% 20%, rgba(255, 255, 255, 0.36), transparent 34%),
+        var(--surface);
+    border: 1px solid rgba(21, 40, 34, 0.13);
+    box-shadow: 0 16px 34px rgba(21, 40, 34, 0.1);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.skills-details .box:nth-child(2n) {
+    background:
+        radial-gradient(circle at 28% 20%, rgba(255, 255, 255, 0.32), transparent 34%),
+        #eadcad;
+}
+
+.skills-details .box:hover {
+    transform: translateY(-6px);
+    background:
+        radial-gradient(circle at 28% 20%, rgba(242, 230, 192, 0.12), transparent 34%),
+        var(--coal-panel);
+    box-shadow: 0 22px 42px rgba(21, 40, 34, 0.2);
+}
+
+.skills-details .box:hover .topic,
+.skills-details .box:hover .per {
+    color: var(--cream);
+}
+
 .timeline {
     background:
         radial-gradient(circle at 22% 18%, rgba(175, 163, 74, 0.14), transparent 30%),
