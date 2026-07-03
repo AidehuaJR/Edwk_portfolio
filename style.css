@@ -1692,6 +1692,10 @@ section,
     background: #f7ecc8;
 }
 
+.services .box:nth-child(6) {
+    background: #eadcad;
+}
+
 .topic,
 section .topic,
 .services .topic,
