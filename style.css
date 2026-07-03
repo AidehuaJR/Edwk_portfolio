@@ -1920,6 +1920,18 @@ button[type="submit"]:disabled:hover,
         #eadcad;
 }
 
+.skills-details .box:nth-child(3) {
+    background:
+        radial-gradient(circle at 28% 20%, rgba(255, 255, 255, 0.32), transparent 34%),
+        #eadcad;
+}
+
+.skills-details .box:nth-child(4) {
+    background:
+        radial-gradient(circle at 28% 20%, rgba(255, 255, 255, 0.36), transparent 34%),
+        var(--surface);
+}
+
 .skills-details .box:hover {
     transform: translateY(-6px);
     background:
