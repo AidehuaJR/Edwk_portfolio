@@ -2003,6 +2003,10 @@ button[type="submit"]:disabled:hover,
     background: #f7ecc8;
 }
 
+.timeline-block:nth-child(6) .timeline-box {
+    background: #eadcad;
+}
+
 .timeline-box h3 {
     color: var(--coal);
 }
@@ -2038,6 +2042,10 @@ button[type="submit"]:disabled:hover,
 
 .timeline-block:nth-child(3n).right .timeline-box::before {
     border-left-color: #f7ecc8;
+}
+
+.timeline-block:nth-child(6).right .timeline-box::before {
+    border-left-color: #eadcad;
 }
 
 .timeline-box:hover {
