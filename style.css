@@ -5,7 +5,7 @@
     --avocado: #afa34a;
     --cream: #f2e6c0;
     --coal: #152822;
-    --ketchup: #bc533b;
+    --ketchup: #6f7132;
     --bg: var(--cream);
     --surface: #f8edca;
     --surface-soft: #e7daa9;
@@ -39,6 +39,161 @@ body{
     color: var(--text);
     overflow-x: hidden;
 
+}
+
+body.is-loading {
+    height: 100vh;
+    overflow: hidden;
+}
+
+.page-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 28px;
+    background:
+        radial-gradient(circle at 24% 22%, rgba(175, 163, 74, 0.2), transparent 32%),
+        radial-gradient(circle at 78% 68%, rgba(111, 113, 50, 0.16), transparent 30%),
+        linear-gradient(135deg, #f8edca 0%, var(--cream) 58%, #dfd09a 100%);
+    color: var(--coal);
+    transition: opacity 0.48s ease, visibility 0.48s ease;
+}
+
+.page-loader.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.loader-shell {
+    width: min(460px, 100%);
+    padding: 34px 30px;
+    border: 1px solid rgba(21, 40, 34, 0.16);
+    border-radius: 24px;
+    background: rgba(248, 237, 202, 0.78);
+    box-shadow: 0 28px 70px rgba(21, 40, 34, 0.16);
+    backdrop-filter: blur(18px);
+}
+
+.loader-kicker {
+    color: var(--ketchup);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.loader-mark {
+    position: relative;
+    width: 108px;
+    height: 78px;
+    margin: 22px 0 18px;
+}
+
+.loader-mark span {
+    position: absolute;
+    display: block;
+    width: 54px;
+    height: 54px;
+    border-radius: 18px;
+    border: 2px solid rgba(21, 40, 34, 0.18);
+    background: var(--surface);
+    box-shadow: 0 14px 24px rgba(21, 40, 34, 0.12);
+    animation: loaderStack 1.4s ease-in-out infinite;
+}
+
+.loader-mark span:nth-child(1) {
+    left: 0;
+    bottom: 0;
+    background: var(--avocado);
+}
+
+.loader-mark span:nth-child(2) {
+    left: 27px;
+    bottom: 12px;
+    background: var(--cream);
+    animation-delay: 0.12s;
+}
+
+.loader-mark span:nth-child(3) {
+    left: 54px;
+    bottom: 24px;
+    background: var(--coal);
+    animation-delay: 0.24s;
+}
+
+.loader-title {
+    max-width: 360px;
+    color: var(--coal);
+    font-family: "Space Grotesk", "Inter", sans-serif;
+    font-size: clamp(1.8rem, 7vw, 2.7rem);
+    font-weight: 700;
+    line-height: 1.02;
+}
+
+.loader-track {
+    position: relative;
+    height: 14px;
+    margin-top: 28px;
+    overflow: hidden;
+    border: 1px solid rgba(21, 40, 34, 0.14);
+    border-radius: 999px;
+    background: rgba(21, 40, 34, 0.1);
+}
+
+.loader-progress {
+    width: 0%;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, var(--avocado), var(--ketchup));
+    transition: width 0.22s ease;
+}
+
+.loader-builder {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 26px;
+    height: 26px;
+    border: 3px solid var(--cream);
+    border-radius: 9px;
+    background: var(--coal);
+    box-shadow: 0 8px 18px rgba(21, 40, 34, 0.2);
+    transform: translate(-50%, -50%);
+    animation: loaderBuilder 1.1s ease-in-out infinite alternate;
+}
+
+.loader-percent {
+    margin-top: 12px;
+    color: var(--muted);
+    font-size: 0.88rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+}
+
+@keyframes loaderStack {
+    0%, 100% {
+        transform: translateY(0) rotate(-4deg);
+    }
+
+    50% {
+        transform: translateY(-8px) rotate(4deg);
+    }
+}
+
+@keyframes loaderBuilder {
+    from {
+        left: 8%;
+        transform: translate(-50%, -50%) rotate(-10deg);
+    }
+
+    to {
+        left: 92%;
+        transform: translate(-50%, -50%) rotate(10deg);
+    }
 }
 
 /*Custom Scroll Bar CSS*/
@@ -1640,7 +1795,7 @@ footer .text span a {
     overflow: hidden;
   }
 
-/* Final palette guard: cream base, avocado surfaces, coal text, ketchup accents. */
+/* Final palette guard: cream base, avocado surfaces, coal text, moss accents. */
 body,
 section,
 .about,
@@ -1741,7 +1896,7 @@ section .button button:hover {
 .interactive-lab::before {
     background:
         radial-gradient(circle at 76% 43%, rgba(175, 163, 74, 0.3), transparent 34%),
-        radial-gradient(circle at 88% 24%, rgba(188, 83, 59, 0.18), transparent 28%),
+        radial-gradient(circle at 88% 24%, rgba(111, 113, 50, 0.18), transparent 28%),
         linear-gradient(90deg, rgba(242, 230, 192, 0.92) 0%, rgba(242, 230, 192, 0.72) 36%, rgba(242, 230, 192, 0.18) 100%);
 }
 
@@ -1788,7 +1943,7 @@ section .button button:hover {
 
 .lab-controls button:hover,
 .lab-controls button:focus-visible {
-    border-color: rgba(188, 83, 59, 0.56);
+    border-color: rgba(111, 113, 50, 0.56);
 }
 
 .lab-controls button.is-active {
@@ -1813,7 +1968,7 @@ section .button button:hover {
 .contact-form-section {
     background:
         radial-gradient(circle at 22% 24%, rgba(175, 163, 74, 0.16), transparent 30%),
-        radial-gradient(circle at 82% 70%, rgba(188, 83, 59, 0.11), transparent 30%),
+        radial-gradient(circle at 82% 70%, rgba(111, 113, 50, 0.11), transparent 30%),
         var(--bg);
     color: var(--coal);
 }
@@ -1872,7 +2027,7 @@ button[type="submit"],
 .send-button {
     background: var(--ketchup);
     color: var(--cream);
-    box-shadow: 0 14px 26px rgba(188, 83, 59, 0.2);
+    box-shadow: 0 14px 26px rgba(111, 113, 50, 0.2);
 }
 
 button[type="submit"]:disabled,
@@ -1948,7 +2103,7 @@ button[type="submit"]:disabled:hover,
 .timeline {
     background:
         radial-gradient(circle at 22% 18%, rgba(175, 163, 74, 0.14), transparent 30%),
-        radial-gradient(circle at 78% 68%, rgba(188, 83, 59, 0.1), transparent 28%),
+        radial-gradient(circle at 78% 68%, rgba(111, 113, 50, 0.1), transparent 28%),
         var(--bg);
     color: var(--text);
 }

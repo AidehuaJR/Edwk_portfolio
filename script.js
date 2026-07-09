@@ -1,4 +1,6 @@
 // Typewriter Text Logic
+setupPageLoader();
+
 const roles = [
   "Web Developer ",
   "Developer ",
@@ -137,6 +139,63 @@ document.addEventListener("DOMContentLoaded", () => {
 document.getElementById("hireBtn").addEventListener("click", () => {
   document.querySelector("#contact").scrollIntoView({ behavior: "smooth" });
 });
+
+function setupPageLoader() {
+  const loader = document.getElementById("page-loader");
+  const progress = document.getElementById("loader-progress");
+  const percent = document.getElementById("loader-percent");
+
+  if (!loader || !progress || !percent) {
+    document.body.classList.remove("is-loading");
+    return;
+  }
+
+  let current = 0;
+  let pageLoaded = false;
+  const startedAt = performance.now();
+  const minimumDuration = 1200;
+
+  const setProgress = (value) => {
+    current = Math.max(current, Math.min(value, 100));
+    progress.style.width = `${current}%`;
+    percent.textContent = `${Math.round(current)}%`;
+  };
+
+  const finish = () => {
+    const remaining = Math.max(0, minimumDuration - (performance.now() - startedAt));
+
+    setTimeout(() => {
+      setProgress(100);
+      loader.classList.add("is-hidden");
+      document.body.classList.remove("is-loading");
+
+      setTimeout(() => {
+        loader.remove();
+      }, 520);
+    }, remaining);
+  };
+
+  const tick = window.setInterval(() => {
+    if (pageLoaded) {
+      window.clearInterval(tick);
+      finish();
+      return;
+    }
+
+    const next = current + (current < 55 ? 8 : current < 82 ? 4 : 1.4);
+    setProgress(Math.min(next, 92));
+  }, 120);
+
+  window.addEventListener("load", () => {
+    pageLoaded = true;
+  });
+
+  window.setTimeout(() => {
+    if (!pageLoaded) {
+      pageLoaded = true;
+    }
+  }, 4200);
+}
 
 function setupContactCaptcha() {
   const form = document.querySelector(".contact-form");

@@ -196,7 +196,7 @@
     height: 9px;
     border-radius: 50%;
     background: var(--ketchup);
-    box-shadow: 0 0 18px rgba(188, 83, 59, 0.32);
+    box-shadow: 0 0 18px rgba(111, 113, 50, 0.32);
 }
 
 .hero-copy h1 {
@@ -275,7 +275,7 @@
 
 .hero-secondary:hover,
 .hero-secondary:focus-visible {
-    border-color: rgba(188, 83, 59, 0.72);
+    border-color: rgba(111, 113, 50, 0.72);
     color: var(--ketchup);
     outline: none;
     transform: translateY(-2px);

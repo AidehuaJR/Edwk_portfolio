@@ -24,7 +24,7 @@ body {
     pointer-events: none;
     background:
         radial-gradient(circle at 76% 43%, rgba(175, 163, 74, 0.3), transparent 34%),
-        radial-gradient(circle at 88% 24%, rgba(188, 83, 59, 0.18), transparent 28%),
+        radial-gradient(circle at 88% 24%, rgba(111, 113, 50, 0.18), transparent 28%),
         linear-gradient(90deg, rgba(242, 230, 192, 0.92) 0%, rgba(242, 230, 192, 0.72) 36%, rgba(242, 230, 192, 0.18) 100%);
 }
 
@@ -117,7 +117,7 @@ body {
 
 .lab-controls button:hover,
 .lab-controls button:focus-visible {
-    border-color: rgba(188, 83, 59, 0.56);
+    border-color: rgba(111, 113, 50, 0.56);
     color: var(--ketchup);
     transform: translateY(-2px);
     outline: none;
