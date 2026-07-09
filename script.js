@@ -151,14 +151,24 @@ function setupPageLoader() {
   }
 
   let current = 0;
-  let pageLoaded = false;
+  const readyItems = new Set();
+  const requiredItems = new Set(["page", "jake", "lab"]);
   const startedAt = performance.now();
-  const minimumDuration = 1200;
+  const minimumDuration = 1400;
+  const maxDuration = 6500;
 
   const setProgress = (value) => {
     current = Math.max(current, Math.min(value, 100));
     progress.style.width = `${current}%`;
     percent.textContent = `${Math.round(current)}%`;
+  };
+
+  const isReady = () => requiredItems.size === readyItems.size;
+
+  const markReady = (item) => {
+    readyItems.add(item);
+    const loadedRatio = readyItems.size / requiredItems.size;
+    setProgress(Math.max(current, loadedRatio * 88));
   };
 
   const finish = () => {
@@ -176,25 +186,36 @@ function setupPageLoader() {
   };
 
   const tick = window.setInterval(() => {
-    if (pageLoaded) {
+    if (isReady()) {
       window.clearInterval(tick);
       finish();
       return;
     }
 
-    const next = current + (current < 55 ? 8 : current < 82 ? 4 : 1.4);
-    setProgress(Math.min(next, 92));
+    const ceiling = 18 + (readyItems.size / requiredItems.size) * 68;
+    const next = current + (current < 55 ? 5 : current < 78 ? 2.4 : 0.8);
+    setProgress(Math.min(next, ceiling));
   }, 120);
 
-  window.addEventListener("load", () => {
-    pageLoaded = true;
+  if (document.readyState === "complete") {
+    markReady("page");
+  } else {
+    window.addEventListener("load", () => {
+      markReady("page");
+    }, { once: true });
+  }
+
+  window.addEventListener("portfolio:jake-ready", () => {
+    markReady("jake");
+  }, { once: true });
+
+  window.addEventListener("portfolio:lab-ready", () => {
+    markReady("lab");
   });
 
   window.setTimeout(() => {
-    if (!pageLoaded) {
-      pageLoaded = true;
-    }
-  }, 4200);
+    requiredItems.forEach(markReady);
+  }, maxDuration);
 }
 
 function setupContactCaptcha() {

@@ -1,7 +1,7 @@
 import * as THREE from "https://unpkg.com/three@0.160.0/build/three.module.js";
 
 const stylesheetId = "holographic-lab-styles";
-const stylesheetHref = "holographic-lab.css?v=contact-vortex-17";
+const stylesheetHref = "holographic-lab.css?v=loader-assets-26";
 
 if (!document.getElementById(stylesheetId)) {
   const link = document.createElement("link");
@@ -16,6 +16,12 @@ const lab = document.querySelector(".interactive-lab");
 
 if (canvas && lab) {
   initHolographicLab();
+} else {
+  notifyLabReady();
+}
+
+function notifyLabReady() {
+  window.dispatchEvent(new CustomEvent("portfolio:lab-ready"));
 }
 
 function initHolographicLab() {
@@ -89,6 +95,7 @@ function initHolographicLab() {
   const resizeObserver = new ResizeObserver(resize);
   resizeObserver.observe(lab);
   resize();
+  notifyLabReady();
 
   renderer.setAnimationLoop((elapsedMs) => {
     if (!isVisible) {
@@ -220,7 +227,7 @@ function createVortex() {
     );
 
     const material = new THREE.LineBasicMaterial({
-      color: arm % 2 === 0 ? 0xbc533b : 0x152822,
+      color: arm % 2 === 0 ? 0x6f7132 : 0x152822,
       transparent: true,
       opacity: 0.78,
       blending: THREE.NormalBlending,

@@ -492,7 +492,7 @@ section .main-container{
     pointer-events: none;
     background:
         radial-gradient(circle at 75% 45%, rgba(175, 163, 74, 0.24), transparent 32%),
-        radial-gradient(circle at 82% 25%, rgba(188, 83, 59, 0.16), transparent 28%),
+        radial-gradient(circle at 82% 25%, rgba(111, 113, 50, 0.16), transparent 28%),
         linear-gradient(90deg, rgba(21, 40, 34, 0.96) 0%, rgba(21, 40, 34, 0.74) 38%, rgba(21, 40, 34, 0.18) 100%);
 }
 
@@ -1028,7 +1028,7 @@ section .button button:hover {
     border-color: var(--ketchup);
     color: var(--ketchup);
     background: transparent;
-    box-shadow: 0 0 28px rgba(188, 83, 59, 0.22);
+    box-shadow: 0 0 28px rgba(111, 113, 50, 0.22);
 }
 
 .social-links i {

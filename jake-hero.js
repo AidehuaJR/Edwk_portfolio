@@ -6,6 +6,12 @@ const stage = document.querySelector(".jake-stage");
 
 if (canvas && stage) {
   initJakeHero();
+} else {
+  notifyJakeReady();
+}
+
+function notifyJakeReady() {
+  window.dispatchEvent(new CustomEvent("portfolio:jake-ready"));
 }
 
 function initJakeHero() {
@@ -126,6 +132,7 @@ function initJakeHero() {
       dragPivot.add(model);
 
       stage.classList.add("is-ready");
+      notifyJakeReady();
     },
     undefined,
     () => {
@@ -133,6 +140,7 @@ function initJakeHero() {
       if (loading) {
         loading.textContent = "model unavailable";
       }
+      notifyJakeReady();
     }
   );
 
