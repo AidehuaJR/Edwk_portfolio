@@ -168,6 +168,79 @@ body {
     line-height: 1.6;
 }
 
+.lab-projects {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    max-width: 860px;
+    margin-top: 26px;
+}
+
+.lab-project {
+    position: relative;
+    min-height: 148px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 18px;
+    overflow: hidden;
+    border: 1px solid rgba(21, 40, 34, 0.16);
+    border-radius: 14px;
+    background: rgba(248, 237, 202, 0.72);
+    color: var(--coal);
+    box-shadow: 0 16px 34px rgba(21, 40, 34, 0.1);
+    transition: transform 0.24s ease, border-color 0.24s ease, box-shadow 0.24s ease, background 0.24s ease;
+}
+
+.lab-project::before {
+    content: "";
+    position: absolute;
+    inset: auto -28px -46px auto;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(175, 163, 74, 0.32), transparent 68%);
+    transition: transform 0.24s ease, opacity 0.24s ease;
+}
+
+.lab-project:hover,
+.lab-project:focus-visible {
+    transform: translateY(-5px);
+    border-color: rgba(111, 113, 50, 0.46);
+    background: rgba(248, 237, 202, 0.92);
+    box-shadow: 0 22px 44px rgba(21, 40, 34, 0.16);
+    outline: none;
+}
+
+.lab-project:hover::before,
+.lab-project:focus-visible::before {
+    opacity: 0.9;
+    transform: translate(-18px, -12px) scale(1.08);
+}
+
+.lab-project-index {
+    color: var(--ketchup);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+}
+
+.lab-project strong {
+    position: relative;
+    max-width: 220px;
+    color: var(--coal);
+    font-size: 1rem;
+    line-height: 1.22;
+}
+
+.lab-project span:last-child {
+    position: relative;
+    color: var(--muted);
+    font-size: 0.8rem;
+    line-height: 1.55;
+}
+
 @media(max-width : 968px) {
     .interactive-lab {
         min-height: auto;
@@ -197,6 +270,10 @@ body {
     }
 
     .lab-highlights {
+        grid-template-columns: 1fr;
+    }
+
+    .lab-projects {
         grid-template-columns: 1fr;
     }
 

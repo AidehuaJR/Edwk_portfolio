@@ -1,7 +1,7 @@
 import * as THREE from "https://unpkg.com/three@0.160.0/build/three.module.js";
 
 const stylesheetId = "holographic-lab-styles";
-const stylesheetHref = "holographic-lab.css?v=lab-names-cursor-28";
+const stylesheetHref = "holographic-lab.css?v=lab-expansion-29";
 
 if (!document.getElementById(stylesheetId)) {
   const link = document.createElement("link");
