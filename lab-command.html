@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Strategy Simulation Board</title>
-  <link rel="stylesheet" href="lab-experiment.css?v=innovation-lab-30">
+  <link rel="stylesheet" href="lab-experiment.css?v=lab-pages-31">
 </head>
 <body data-experiment="command">
   <main class="experiment-page">
@@ -13,9 +13,8 @@
       <p class="experiment-kicker">Experiment 01</p>
       <h1>Strategy Simulation Board</h1>
       <p>
-        A starter space for scenario design: command nodes, route planning, moving signals,
-        and readable tactical feedback. Build this into your own strategy simulation
-        interface over time.
+        A command-style interface study with moving routes, signal pulses, and readable
+        scenario states. It is built as a foundation for deeper simulation tooling.
       </p>
       <div class="experiment-actions">
         <a href="lab-terrain.html">Next experiment</a>
@@ -24,9 +23,13 @@
     </section>
     <section class="experiment-stage" aria-label="Animated command simulation board">
       <canvas id="experiment-canvas"></canvas>
+      <div class="stage-hud">
+        <span>scenario pulse</span>
+        <strong>Live Board</strong>
+      </div>
       <div class="stage-label">cursor reactive board</div>
     </section>
   </main>
-  <script src="lab-experiment.js?v=innovation-lab-30"></script>
+  <script src="lab-experiment.js?v=lab-pages-31"></script>
 </body>
 </html>

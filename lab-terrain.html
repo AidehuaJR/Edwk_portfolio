@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Holographic Terrain Study</title>
-  <link rel="stylesheet" href="lab-experiment.css?v=innovation-lab-30">
+  <link rel="stylesheet" href="lab-experiment.css?v=lab-pages-31">
 </head>
 <body data-experiment="terrain">
   <main class="experiment-page">
@@ -13,8 +13,8 @@
       <p class="experiment-kicker">Experiment 02</p>
       <h1>Holographic Terrain Study</h1>
       <p>
-        A terrain sketch for elevation, scan lines, and cursor-driven motion. This is a
-        good base for making your own terrain logic, tactical overlays, or game map tools.
+        A scan-based terrain field with depth, wave motion, and cursor-driven distortion.
+        It is a visual foundation for map tools, environmental simulation, and game worlds.
       </p>
       <div class="experiment-actions">
         <a href="lab-robot.html">Next experiment</a>
@@ -23,9 +23,13 @@
     </section>
     <section class="experiment-stage" aria-label="Animated holographic terrain study">
       <canvas id="experiment-canvas"></canvas>
+      <div class="stage-hud">
+        <span>elevation field</span>
+        <strong>Terrain Scan</strong>
+      </div>
       <div class="stage-label">cursor reactive terrain</div>
     </section>
   </main>
-  <script src="lab-experiment.js?v=innovation-lab-30"></script>
+  <script src="lab-experiment.js?v=lab-pages-31"></script>
 </body>
 </html>
