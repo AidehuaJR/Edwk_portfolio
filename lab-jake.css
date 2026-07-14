@@ -194,6 +194,39 @@ h1 {
     line-height: 1.35;
 }
 
+.lab-cta-row {
+    width: min(100%, 560px);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.lab-cta-row a {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    padding: 0 15px;
+    border: 1px solid rgba(21, 40, 34, 0.14);
+    border-radius: 999px;
+    background: rgba(21, 40, 34, 0.86);
+    color: var(--cream);
+    font-size: 0.86rem;
+    font-weight: 800;
+    text-decoration: none;
+    transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.lab-cta-row a:hover,
+.lab-cta-row a:focus-visible {
+    background: var(--moss);
+    box-shadow: 0 16px 28px rgba(21, 40, 34, 0.16);
+    transform: translateY(-2px);
+    outline: none;
+}
+
 .value-buttons {
     width: min(100%, 620px);
     display: flex;
