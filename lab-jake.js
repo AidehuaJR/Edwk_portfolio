@@ -72,6 +72,8 @@ if (canvas) {
 }
 
 function initLab() {
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let isVisible = true;
   const renderer = new THREE.WebGLRenderer({
     canvas,
     antialias: true,
@@ -80,7 +82,7 @@ function initLab() {
   });
 
   renderer.setClearColor(0x000000, 0);
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.75));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, reducedMotion ? 1.2 : 1.75));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
@@ -190,22 +192,31 @@ function initLab() {
 
   const resizeObserver = new ResizeObserver(resize);
   resizeObserver.observe(canvas.parentElement || canvas);
+  const visibilityObserver = new IntersectionObserver((entries) => {
+    isVisible = entries.some((entry) => entry.isIntersecting);
+  });
+  visibilityObserver.observe(canvas);
   resize();
   setActive(activeKey, false);
 
   renderer.setAnimationLoop((elapsedMs) => {
+    if (!isVisible) {
+      return;
+    }
+
     const time = elapsedMs * 0.001;
-    pointer.x = THREE.MathUtils.lerp(pointer.x, pointer.tx, 0.06);
-    pointer.y = THREE.MathUtils.lerp(pointer.y, pointer.ty, 0.06);
+    const motionScale = reducedMotion ? 0.32 : 1;
+    pointer.x = THREE.MathUtils.lerp(pointer.x, pointer.tx, reducedMotion ? 0.035 : 0.06);
+    pointer.y = THREE.MathUtils.lerp(pointer.y, pointer.ty, reducedMotion ? 0.035 : 0.06);
 
     rig.rotation.y = THREE.MathUtils.lerp(rig.rotation.y, manualRotation + pointer.x * 0.14, 0.04);
     rig.rotation.x = THREE.MathUtils.lerp(rig.rotation.x, -pointer.y * 0.05, 0.04);
 
-    jake.update(time, activeKey);
-    updateValueGroups(valueGroups, time);
-    updateConstellations(constellations, time);
-    updateCandyWorld(candyWorld, time, activeKey);
-    updateProcessLoop(processLoop, time, activeKey);
+    jake.update(time * motionScale, activeKey);
+    updateValueGroups(valueGroups, time * motionScale);
+    updateConstellations(constellations, time * motionScale);
+    updateCandyWorld(candyWorld, time * motionScale, activeKey);
+    updateProcessLoop(processLoop, time * motionScale, activeKey);
 
     const activeTarget = valueData[activeKey].target;
     camera.position.x = THREE.MathUtils.lerp(camera.position.x, activeTarget.x * 0.18 + pointer.x * 0.7, 0.035);
