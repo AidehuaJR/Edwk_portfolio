@@ -17,35 +17,40 @@ const valueData = {
     title: "Candy Impact Garden",
     copy: "Turn a playful idea into something people can use. Candy towers, coins, and sprouting metrics show how small design choices can become visible outcomes.",
     proof: ["Outcome thinking", "Interaction design", "User value"],
-    target: new THREE.Vector3(-3.6, 0.2, 1.6)
+    target: new THREE.Vector3(-3.6, 0.2, 1.6),
+    focusRotation: 0.8
   },
   curiosity: {
     tag: "02 / Curiosity",
     title: "Question Portal",
     copy: "Ask better questions, test strange prototypes, and keep the learning loop visible. A portal lens and orbiting idea charms react when you explore.",
     proof: ["Fast learning", "Prototype mindset", "Visual inquiry"],
-    target: new THREE.Vector3(3.2, 1.15, 0.85)
+    target: new THREE.Vector3(3.2, 1.15, 0.85),
+    focusRotation: -0.9
   },
   solving: {
     tag: "03 / Problem Solving",
     title: "Lemon Logic Path",
     copy: "Break messy problems into pieces, test a route, then rebuild the system with clearer logic. The lemon tower guards the path from vague thinking.",
     proof: ["Debugging", "Systems thinking", "Decision flow"],
-    target: new THREE.Vector3(-2.5, -0.45, -2.65)
+    target: new THREE.Vector3(-2.5, -0.45, -2.65),
+    focusRotation: 2.42
   },
   quality: {
     tag: "04 / Code Quality",
     title: "Clean Spell Stack",
     copy: "Readable structure matters. The floating code tiles show modular thinking, careful naming, maintainable details, and fewer mystery bugs.",
     proof: ["Maintainability", "Scoped modules", "Performance care"],
-    target: new THREE.Vector3(2.75, -0.35, -2.5)
+    target: new THREE.Vector3(2.75, -0.35, -2.5),
+    focusRotation: -2.34
   },
   communication: {
     tag: "05 / Technical Communication",
     title: "Clarity Campfire",
     copy: "Strong work becomes stronger when it can be explained. Speech cards, signs, and warm light turn technical thinking into clear language.",
     proof: ["Clear writing", "Stakeholder language", "Technical framing"],
-    target: new THREE.Vector3(0, 2.35, -2.85)
+    target: new THREE.Vector3(0, 2.35, -2.85),
+    focusRotation: Math.PI
   }
 };
 
@@ -145,7 +150,8 @@ function initLab() {
   const raycaster = new THREE.Raycaster();
   const mouse = new THREE.Vector2();
   const pointer = { x: 0, y: 0, tx: 0, ty: 0, dragging: false, lastX: 0, lastY: 0 };
-  let manualRotation = 0;
+  let focusRotation = valueData[activeKey].focusRotation || 0;
+  let dragRotation = 0;
 
   buttons.forEach((button) => {
     button.addEventListener("click", () => {
@@ -171,7 +177,7 @@ function initLab() {
     pointer.ty = ((event.clientY - rect.top) / rect.height - 0.5) * 2;
 
     if (pointer.dragging) {
-      manualRotation += (event.clientX - pointer.lastX) * 0.006;
+      dragRotation += (event.clientX - pointer.lastX) * 0.006;
       pointer.lastX = event.clientX;
       pointer.lastY = event.clientY;
     }
@@ -209,7 +215,9 @@ function initLab() {
     pointer.x = THREE.MathUtils.lerp(pointer.x, pointer.tx, reducedMotion ? 0.035 : 0.06);
     pointer.y = THREE.MathUtils.lerp(pointer.y, pointer.ty, reducedMotion ? 0.035 : 0.06);
 
-    rig.rotation.y = THREE.MathUtils.lerp(rig.rotation.y, manualRotation + pointer.x * 0.14, 0.04);
+    dragRotation = THREE.MathUtils.lerp(dragRotation, 0, pointer.dragging ? 0.004 : 0.025);
+    const desiredRotation = focusRotation + dragRotation + pointer.x * 0.14;
+    rig.rotation.y = THREE.MathUtils.lerp(rig.rotation.y, desiredRotation, reducedMotion ? 0.035 : 0.06);
     rig.rotation.x = THREE.MathUtils.lerp(rig.rotation.x, -pointer.y * 0.05, 0.04);
 
     jake.update(time * motionScale, activeKey);
@@ -272,6 +280,9 @@ function initLab() {
     Object.entries(valueGroups).forEach(([groupKey, group]) => {
       group.userData.active = groupKey === key;
     });
+
+    focusRotation = data.focusRotation || 0;
+    dragRotation = 0;
 
     if (writeHash) {
       history.replaceState(null, "", `#${key === "quality" ? "craft" : key}`);
