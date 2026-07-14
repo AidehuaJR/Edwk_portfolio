@@ -135,6 +135,65 @@ h1 {
     line-height: 1.7;
 }
 
+.proof-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.proof-strip span {
+    display: inline-flex;
+    align-items: center;
+    min-height: 32px;
+    padding: 0 11px;
+    border: 1px solid rgba(21, 40, 34, 0.13);
+    border-radius: 999px;
+    background: rgba(175, 163, 74, 0.18);
+    color: var(--coal);
+    font-size: 0.78rem;
+    font-weight: 800;
+}
+
+.recruiter-panel {
+    width: min(100%, 560px);
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1px;
+    margin-top: 16px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    background: rgba(21, 40, 34, 0.16);
+    box-shadow: 0 18px 46px rgba(21, 40, 34, 0.1);
+}
+
+.recruiter-panel div {
+    min-width: 0;
+    padding: 16px 14px;
+    background: rgba(248, 237, 202, 0.72);
+}
+
+.recruiter-panel span,
+.recruiter-panel strong {
+    display: block;
+}
+
+.recruiter-panel span {
+    color: var(--moss);
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.recruiter-panel strong {
+    margin-top: 7px;
+    color: var(--coal);
+    font-size: 0.9rem;
+    line-height: 1.35;
+}
+
 .value-buttons {
     width: min(100%, 620px);
     display: flex;
@@ -299,6 +358,10 @@ h1 {
     .story-card {
         padding: 20px;
         border-radius: 20px;
+    }
+
+    .recruiter-panel {
+        grid-template-columns: 1fr;
     }
 
     .value-button {

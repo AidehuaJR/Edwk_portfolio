@@ -4,6 +4,11 @@ const canvas = document.getElementById("jake-lab-canvas");
 const titleElement = document.getElementById("jake-lab-title");
 const copyElement = document.getElementById("jake-lab-copy");
 const tagElement = document.getElementById("jake-lab-tag");
+const proofElements = [
+  document.getElementById("jake-lab-proof-a"),
+  document.getElementById("jake-lab-proof-b"),
+  document.getElementById("jake-lab-proof-c")
+];
 const buttons = Array.from(document.querySelectorAll("[data-value]"));
 
 const valueData = {
@@ -11,30 +16,35 @@ const valueData = {
     tag: "01 / Business Impact",
     title: "Candy Impact Garden",
     copy: "Turn a playful idea into something people can use. Candy towers, coins, and sprouting metrics show how small design choices can become visible outcomes.",
+    proof: ["Outcome thinking", "Interaction design", "User value"],
     target: new THREE.Vector3(-3.6, 0.2, 1.6)
   },
   curiosity: {
     tag: "02 / Curiosity",
     title: "Question Portal",
     copy: "Ask better questions, test strange prototypes, and keep the learning loop visible. A portal lens and orbiting idea charms react when you explore.",
+    proof: ["Fast learning", "Prototype mindset", "Visual inquiry"],
     target: new THREE.Vector3(3.2, 1.15, 0.85)
   },
   solving: {
     tag: "03 / Problem Solving",
     title: "Lemon Logic Path",
     copy: "Break messy problems into pieces, test a route, then rebuild the system with clearer logic. The lemon tower guards the path from vague thinking.",
+    proof: ["Debugging", "Systems thinking", "Decision flow"],
     target: new THREE.Vector3(-2.5, -0.45, -2.65)
   },
   quality: {
     tag: "04 / Code Quality",
     title: "Clean Spell Stack",
     copy: "Readable structure matters. The floating code tiles show modular thinking, careful naming, maintainable details, and fewer mystery bugs.",
+    proof: ["Maintainability", "Scoped modules", "Performance care"],
     target: new THREE.Vector3(2.75, -0.35, -2.5)
   },
   communication: {
     tag: "05 / Technical Communication",
     title: "Clarity Campfire",
     copy: "Strong work becomes stronger when it can be explained. Speech cards, signs, and warm light turn technical thinking into clear language.",
+    proof: ["Clear writing", "Stakeholder language", "Technical framing"],
     target: new THREE.Vector3(0, 2.35, -2.85)
   }
 };
@@ -127,6 +137,9 @@ function initLab() {
   const candyWorld = createCandyWorld();
   rig.add(candyWorld.group);
 
+  const processLoop = createProcessLoop();
+  rig.add(processLoop.group);
+
   const raycaster = new THREE.Raycaster();
   const mouse = new THREE.Vector2();
   const pointer = { x: 0, y: 0, tx: 0, ty: 0, dragging: false, lastX: 0, lastY: 0 };
@@ -192,6 +205,7 @@ function initLab() {
     updateValueGroups(valueGroups, time);
     updateConstellations(constellations, time);
     updateCandyWorld(candyWorld, time, activeKey);
+    updateProcessLoop(processLoop, time, activeKey);
 
     const activeTarget = valueData[activeKey].target;
     camera.position.x = THREE.MathUtils.lerp(camera.position.x, activeTarget.x * 0.18 + pointer.x * 0.7, 0.035);
@@ -234,6 +248,11 @@ function initLab() {
     if (titleElement) titleElement.textContent = data.title;
     if (copyElement) copyElement.textContent = data.copy;
     if (tagElement) tagElement.textContent = data.tag;
+    proofElements.forEach((element, index) => {
+      if (element) {
+        element.textContent = data.proof[index] || "";
+      }
+    });
 
     buttons.forEach((button) => {
       button.classList.toggle("is-active", button.dataset.value === key);
@@ -794,6 +813,83 @@ function updateCandyWorld(world, time, activeKey) {
       entry.item.rotation.x += 0.012;
       entry.item.rotation.y += 0.018;
     }
+  });
+}
+
+function createProcessLoop() {
+  const group = new THREE.Group();
+  const steps = [
+    { label: "ask", color: colors.candyBlue, angle: Math.PI * 0.16 },
+    { label: "build", color: colors.jakeYellow, angle: Math.PI * 0.66 },
+    { label: "test", color: colors.lemon, angle: Math.PI * 1.16 },
+    { label: "ship", color: colors.candyPink, angle: Math.PI * 1.66 }
+  ];
+  const items = [];
+
+  steps.forEach((step, index) => {
+    const station = new THREE.Group();
+    const x = Math.cos(step.angle) * 2.18;
+    const z = Math.sin(step.angle) * 1.78;
+    station.position.set(x, -1.26, z);
+
+    const pad = new THREE.Mesh(
+      new THREE.CylinderGeometry(0.3, 0.36, 0.12, 6),
+      material(step.color, { roughness: 0.52, metalness: 0.03 })
+    );
+    pad.castShadow = true;
+    pad.receiveShadow = true;
+    station.add(pad);
+
+    const mast = new THREE.Mesh(
+      new THREE.CylinderGeometry(0.025, 0.025, 0.56, 10),
+      material(colors.coal, { roughness: 0.48 })
+    );
+    mast.position.y = 0.31;
+    station.add(mast);
+
+    const plaque = new THREE.Mesh(
+      new THREE.BoxGeometry(0.68, 0.3, 0.05),
+      material(colors.surface, { roughness: 0.58 })
+    );
+    plaque.position.y = 0.68;
+    plaque.rotation.y = -step.angle + Math.PI / 2;
+    plaque.castShadow = true;
+    station.add(plaque);
+
+    const label = makeTextSprite(step.label, 0.28, colors.coal);
+    label.position.y = 0.7;
+    label.position.z = 0.05;
+    label.rotation.y = plaque.rotation.y;
+    station.add(label);
+
+    items.push({ station, pad, plaque, phase: index * 0.62, label: step.label });
+    group.add(station);
+  });
+
+  const loop = new THREE.Mesh(
+    new THREE.TorusGeometry(2.03, 0.015, 8, 160),
+    material(colors.moss, { transparent: true, opacity: 0.32, roughness: 0.44 })
+  );
+  loop.rotation.x = Math.PI / 2;
+  loop.position.y = -1.23;
+  loop.scale.z = 0.82;
+  group.add(loop);
+
+  return { group, items, loop };
+}
+
+function updateProcessLoop(loopData, time, activeKey) {
+  const speed = activeKey === "quality" || activeKey === "solving" ? 1.25 : 1;
+  loopData.loop.rotation.z = time * 0.16 * speed;
+
+  loopData.items.forEach((item) => {
+    item.station.position.y = -1.26 + Math.sin(time * 1.5 + item.phase) * 0.035;
+    item.plaque.scale.x = THREE.MathUtils.lerp(
+      item.plaque.scale.x,
+      activeKey === "communication" ? 1.12 : 1,
+      0.06
+    );
+    item.pad.rotation.y += 0.012 * speed;
   });
 }
 

@@ -351,12 +351,34 @@ body {
     transform: translateZ(28px);
 }
 
-.lab-project span:last-child {
+.lab-project-copy {
     position: relative;
     color: var(--muted);
     font-size: 0.8rem;
     line-height: 1.55;
     transform: translateZ(22px);
+}
+
+.lab-project-tags {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    transform: translateZ(24px);
+}
+
+.lab-project-tags span {
+    display: inline-flex;
+    align-items: center;
+    min-height: 27px;
+    padding: 0 9px;
+    border: 1px solid rgba(21, 40, 34, 0.13);
+    border-radius: 999px;
+    background: rgba(242, 230, 192, 0.58);
+    color: var(--coal);
+    font-size: 0.68rem;
+    font-weight: 800;
+    line-height: 1;
 }
 
 @media(max-width : 968px) {
