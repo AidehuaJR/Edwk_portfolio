@@ -41,6 +41,51 @@ body{
 
 }
 
+.cursor-aura,
+.cursor-dot {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 998;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.22s ease, width 0.2s ease, height 0.2s ease;
+    will-change: transform;
+}
+
+.cursor-aura {
+    width: 112px;
+    height: 112px;
+    margin: -56px 0 0 -56px;
+    border: 1px solid rgba(111, 113, 50, 0.28);
+    border-radius: 50%;
+    background:
+        radial-gradient(circle, rgba(175, 163, 74, 0.18), rgba(111, 113, 50, 0.08) 42%, transparent 70%);
+    mix-blend-mode: multiply;
+}
+
+.cursor-dot {
+    width: 8px;
+    height: 8px;
+    margin: -4px 0 0 -4px;
+    border-radius: 50%;
+    background: var(--coal);
+    box-shadow: 0 0 18px rgba(111, 113, 50, 0.34);
+}
+
+.cursor-aura.is-visible,
+.cursor-dot.is-visible {
+    opacity: 1;
+}
+
+.cursor-aura.is-pressed {
+    width: 82px;
+    height: 82px;
+    margin: -41px 0 0 -41px;
+    background:
+        radial-gradient(circle, rgba(175, 163, 74, 0.28), rgba(111, 113, 50, 0.12) 46%, transparent 72%);
+}
+
 body.is-loading {
     height: 100vh;
     overflow: hidden;
@@ -482,6 +527,8 @@ section .main-container{
     padding: 90px 8vw;
     background: var(--coal-panel);
     isolation: isolate;
+    --lab-pointer-x: 68%;
+    --lab-pointer-y: 38%;
 }
 
 .interactive-lab::before {
@@ -494,6 +541,20 @@ section .main-container{
         radial-gradient(circle at 75% 45%, rgba(175, 163, 74, 0.24), transparent 32%),
         radial-gradient(circle at 82% 25%, rgba(111, 113, 50, 0.16), transparent 28%),
         linear-gradient(90deg, rgba(21, 40, 34, 0.96) 0%, rgba(21, 40, 34, 0.74) 38%, rgba(21, 40, 34, 0.18) 100%);
+}
+
+.interactive-lab::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background:
+        radial-gradient(circle at var(--lab-pointer-x) var(--lab-pointer-y), rgba(175, 163, 74, 0.28), transparent 26%),
+        radial-gradient(circle at var(--lab-pointer-x) var(--lab-pointer-y), rgba(111, 113, 50, 0.14), transparent 46%);
+    mix-blend-mode: multiply;
+    opacity: 0.78;
+    transition: opacity 0.25s ease;
 }
 
 #holographic-lab-canvas {

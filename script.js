@@ -48,6 +48,7 @@ function typeEffect() {
 document.addEventListener("DOMContentLoaded", () => {
   typeEffect(); // Start typewriter effect
   setupContactCaptcha();
+  setupCursorAura();
 
   // ===== Modal Functionality =====
   const modalBg = document.getElementById("modal-bg");
@@ -55,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const modalContent = {
     ucsc: `
-      <h2>University of California, Santa Cruz</h2>
+      <h2>University of California</h2>
       <p>Studying Computer Science: Game Development (B.S.) with a focus on 3D immersive design, VR Games, and Unity game systems.</p>
       <p>GPA : 3.92/4.0</p>
       <a href="UCSC_transcript.pdf" 
@@ -103,8 +104,8 @@ document.addEventListener("DOMContentLoaded", () => {
    </a>
    `,
    roka: `
-     <h2>Republic of Korea's Army</h2>
-     <p>Working for the Korean government's cybersecurity unit, entering October 2025.</p>
+     <h2>BCTP Group</h2>
+     <p>Battle Command Training Program Group, working with WARSIM simulations to train corps in war strategy.</p>
    `
   };
 
@@ -216,6 +217,59 @@ function setupPageLoader() {
   window.setTimeout(() => {
     requiredItems.forEach(markReady);
   }, maxDuration);
+}
+
+function setupCursorAura() {
+  if (window.matchMedia("(pointer: coarse)").matches) {
+    return;
+  }
+
+  const aura = document.createElement("div");
+  const dot = document.createElement("div");
+  aura.className = "cursor-aura";
+  dot.className = "cursor-dot";
+  document.body.append(aura, dot);
+
+  const current = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+  const target = { x: current.x, y: current.y };
+  let isMoving = false;
+
+  const move = (event) => {
+    target.x = event.clientX;
+    target.y = event.clientY;
+    aura.classList.add("is-visible");
+    dot.classList.add("is-visible");
+
+    if (!isMoving) {
+      isMoving = true;
+      requestAnimationFrame(tick);
+    }
+  };
+
+  const tick = () => {
+    current.x += (target.x - current.x) * 0.18;
+    current.y += (target.y - current.y) * 0.18;
+    aura.style.transform = `translate3d(${current.x}px, ${current.y}px, 0)`;
+    dot.style.transform = `translate3d(${target.x}px, ${target.y}px, 0)`;
+
+    if (Math.abs(target.x - current.x) > 0.2 || Math.abs(target.y - current.y) > 0.2) {
+      requestAnimationFrame(tick);
+    } else {
+      isMoving = false;
+    }
+  };
+
+  window.addEventListener("pointermove", move);
+  window.addEventListener("pointerdown", () => {
+    aura.classList.add("is-pressed");
+  });
+  window.addEventListener("pointerup", () => {
+    aura.classList.remove("is-pressed");
+  });
+  document.addEventListener("mouseleave", () => {
+    aura.classList.remove("is-visible");
+    dot.classList.remove("is-visible");
+  });
 }
 
 function setupContactCaptcha() {

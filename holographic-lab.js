@@ -1,7 +1,7 @@
 import * as THREE from "https://unpkg.com/three@0.160.0/build/three.module.js";
 
 const stylesheetId = "holographic-lab-styles";
-const stylesheetHref = "holographic-lab.css?v=loader-assets-26";
+const stylesheetHref = "holographic-lab.css?v=lab-names-cursor-28";
 
 if (!document.getElementById(stylesheetId)) {
   const link = document.createElement("link");
@@ -80,11 +80,15 @@ function initHolographicLab() {
     const rect = lab.getBoundingClientRect();
     pointer.targetX = ((event.clientX - rect.left) / rect.width - 0.5) * 2;
     pointer.targetY = ((event.clientY - rect.top) / rect.height - 0.5) * 2;
+    lab.style.setProperty("--lab-pointer-x", `${((event.clientX - rect.left) / rect.width) * 100}%`);
+    lab.style.setProperty("--lab-pointer-y", `${((event.clientY - rect.top) / rect.height) * 100}%`);
   });
 
   lab.addEventListener("pointerleave", () => {
     pointer.targetX = 0;
     pointer.targetY = 0;
+    lab.style.setProperty("--lab-pointer-x", "68%");
+    lab.style.setProperty("--lab-pointer-y", "38%");
   });
 
   const observer = new IntersectionObserver((entries) => {
