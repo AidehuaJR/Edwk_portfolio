@@ -243,6 +243,37 @@
     line-height: 1.75;
 }
 
+.hero-proof {
+    width: min(100%, 560px);
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1px;
+    margin-top: 22px;
+    overflow: hidden;
+    border: 1px solid rgba(21, 40, 34, 0.15);
+    border-radius: 18px;
+    background: rgba(21, 40, 34, 0.14);
+}
+
+.hero-proof span {
+    min-width: 0;
+    display: grid;
+    gap: 2px;
+    padding: 13px 12px;
+    background: rgba(248, 237, 202, 0.72);
+    color: var(--muted);
+    font-size: 0.78rem;
+    font-weight: 800;
+    line-height: 1.25;
+}
+
+.hero-proof strong {
+    color: var(--coal);
+    font-family: "Space Grotesk", "Inter", sans-serif;
+    font-size: 1.35rem;
+    line-height: 1;
+}
+
 .hero-copy .social-links {
     margin-top: 24px;
 }
@@ -336,6 +367,10 @@
     .hero-copy h1 {
         font-size: clamp(2.35rem, 12vw, 4.1rem);
         line-height: 1;
+    }
+
+    .hero-proof {
+        grid-template-columns: 1fr;
     }
 
     .jake-stage::before {
