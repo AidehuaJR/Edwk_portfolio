@@ -289,12 +289,26 @@ body {
     animation: labNodePulse 1.8s ease-in-out infinite;
 }
 
-.lab-project-terrain .lab-core {
+.lab-project-curiosity .lab-core {
     border-radius: 36% 64% 44% 56%;
 }
 
-.lab-project-robot .lab-core {
-    border-radius: 12px;
+.lab-project-craft .lab-core {
+    border-radius: 14px;
+}
+
+.lab-project-impact .lab-project-visual {
+    background:
+        radial-gradient(circle at 44% 48%, rgba(214, 143, 74, 0.24), transparent 32%),
+        linear-gradient(120deg, rgba(21, 40, 34, 0.09), rgba(255, 255, 255, 0.24));
+}
+
+.lab-project-curiosity .lab-node {
+    background: var(--warm);
+}
+
+.lab-project-craft .lab-orbit {
+    border-radius: 18px;
 }
 
 @keyframes labOrbitSpin {

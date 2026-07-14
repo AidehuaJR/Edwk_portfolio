@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jake Innovation Lab</title>
+    <link rel="stylesheet" href="lab-jake.css?v=jake-lab-33">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <main class="jake-lab-page">
+        <section class="jake-lab-copy" aria-label="Jake Innovation Lab story">
+            <a class="back-link" href="index.html#lab">
+                <i class="fa-solid fa-arrow-left"></i>
+                Back to portfolio
+            </a>
+            <p class="jake-kicker">Jake Innovation Lab</p>
+            <h1>Playful objects, practical proof.</h1>
+            <p class="jake-intro">
+                Jake becomes an avocado-cat guide through the values behind my work: curiosity, business impact, problem solving,
+                code quality, and technical communication.
+            </p>
+
+            <article class="story-card" aria-live="polite">
+                <span id="jake-lab-tag">01 / Business Impact</span>
+                <h2 id="jake-lab-title">Impact Garden</h2>
+                <p id="jake-lab-copy">
+                    Turn a playful idea into something people can use. The growing blocks show how small design choices can become visible outcomes.
+                </p>
+            </article>
+
+            <div class="value-buttons" role="group" aria-label="Select Jake lab value">
+                <button class="value-button is-active" type="button" data-value="impact">
+                    <i class="fa-solid fa-chart-simple"></i>
+                    Impact
+                </button>
+                <button class="value-button" type="button" data-value="curiosity">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    Curiosity
+                </button>
+                <button class="value-button" type="button" data-value="solving">
+                    <i class="fa-solid fa-puzzle-piece"></i>
+                    Solving
+                </button>
+                <button class="value-button" type="button" data-value="quality">
+                    <i class="fa-solid fa-code"></i>
+                    Code Quality
+                </button>
+                <button class="value-button" type="button" data-value="communication">
+                    <i class="fa-solid fa-comment-dots"></i>
+                    Communication
+                </button>
+            </div>
+        </section>
+
+        <section class="jake-lab-stage" aria-label="Interactive 3D Jake lab">
+            <canvas id="jake-lab-canvas"></canvas>
+            <div class="stage-hint">
+                <span>drag / move</span>
+                <strong>Explore Jake's values</strong>
+            </div>
+            <div class="stage-meter" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </section>
+    </main>
+
+    <script type="module" src="lab-jake.js?v=jake-lab-33"></script>
+</body>
+</html>
