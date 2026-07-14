@@ -9,32 +9,32 @@ const buttons = Array.from(document.querySelectorAll("[data-value]"));
 const valueData = {
   impact: {
     tag: "01 / Business Impact",
-    title: "Impact Garden",
-    copy: "Turn a playful idea into something people can use. The growing blocks show how small design choices can become visible outcomes.",
+    title: "Candy Impact Garden",
+    copy: "Turn a playful idea into something people can use. Candy towers, coins, and sprouting metrics show how small design choices can become visible outcomes.",
     target: new THREE.Vector3(-3.6, 0.2, 1.6)
   },
   curiosity: {
     tag: "02 / Curiosity",
-    title: "Curiosity Desk",
-    copy: "Ask better questions, test strange prototypes, and keep the learning loop visible. The lens and orbiting ideas react when you explore.",
+    title: "Question Portal",
+    copy: "Ask better questions, test strange prototypes, and keep the learning loop visible. A portal lens and orbiting idea charms react when you explore.",
     target: new THREE.Vector3(3.2, 1.15, 0.85)
   },
   solving: {
     tag: "03 / Problem Solving",
-    title: "Puzzle Path",
-    copy: "Break messy problems into pieces, test a route, then rebuild the system with clearer logic. The blocks snap into a readable path.",
+    title: "Lemon Logic Path",
+    copy: "Break messy problems into pieces, test a route, then rebuild the system with clearer logic. The lemon tower guards the path from vague thinking.",
     target: new THREE.Vector3(-2.5, -0.45, -2.65)
   },
   quality: {
     tag: "04 / Code Quality",
-    title: "Clean Code Stack",
-    copy: "Readable structure matters. The code tiles show modular thinking, careful naming, and maintainable details.",
+    title: "Clean Spell Stack",
+    copy: "Readable structure matters. The floating code tiles show modular thinking, careful naming, maintainable details, and fewer mystery bugs.",
     target: new THREE.Vector3(2.75, -0.35, -2.5)
   },
   communication: {
     tag: "05 / Technical Communication",
-    title: "Clarity Bubbles",
-    copy: "Strong work becomes stronger when it can be explained. The speech cards turn technical thinking into clear language.",
+    title: "Clarity Campfire",
+    copy: "Strong work becomes stronger when it can be explained. Speech cards, signs, and warm light turn technical thinking into clear language.",
     target: new THREE.Vector3(0, 2.35, -2.85)
   }
 };
@@ -47,7 +47,12 @@ const colors = {
   coal: 0x152822,
   warm: 0xd68f4a,
   pit: 0x5b351d,
-  white: 0xfff7dc
+  white: 0xfff7dc,
+  jakeYellow: 0xf2b23b,
+  jakeShadow: 0xd48618,
+  candyPink: 0xf08fb0,
+  candyBlue: 0x7fb8d9,
+  lemon: 0xf4df4c
 };
 
 let activeKey = normalizeHash() || "impact";
@@ -119,6 +124,9 @@ function initLab() {
   const constellations = createConstellations();
   rig.add(constellations.group);
 
+  const candyWorld = createCandyWorld();
+  rig.add(candyWorld.group);
+
   const raycaster = new THREE.Raycaster();
   const mouse = new THREE.Vector2();
   const pointer = { x: 0, y: 0, tx: 0, ty: 0, dragging: false, lastX: 0, lastY: 0 };
@@ -183,6 +191,7 @@ function initLab() {
     jake.update(time, activeKey);
     updateValueGroups(valueGroups, time);
     updateConstellations(constellations, time);
+    updateCandyWorld(candyWorld, time, activeKey);
 
     const activeTarget = valueData[activeKey].target;
     camera.position.x = THREE.MathUtils.lerp(camera.position.x, activeTarget.x * 0.18 + pointer.x * 0.7, 0.035);
@@ -252,30 +261,30 @@ function createJake() {
 
   const outer = new THREE.Mesh(
     new THREE.SphereGeometry(1.45, 48, 48),
-    material(colors.moss, { roughness: 0.58, metalness: 0.04 })
+    material(colors.jakeYellow, { roughness: 0.56, metalness: 0.03 })
   );
-  outer.scale.set(0.78, 1.2, 0.46);
+  outer.scale.set(0.72, 1.16, 0.44);
   outer.castShadow = true;
   outer.receiveShadow = true;
   group.add(outer);
 
   const face = new THREE.Mesh(
     new THREE.SphereGeometry(1.25, 48, 48),
-    material(0xe4df67, { roughness: 0.62, metalness: 0.03 })
+    material(0xf6bf58, { roughness: 0.62, metalness: 0.02 })
   );
   face.position.z = 0.25;
-  face.scale.set(0.74, 1.05, 0.26);
+  face.scale.set(0.7, 1.02, 0.24);
   face.castShadow = true;
   group.add(face);
 
-  const pit = new THREE.Mesh(
-    new THREE.SphereGeometry(0.42, 32, 32),
-    material(colors.pit, { roughness: 0.42, metalness: 0.06 })
+  const belly = new THREE.Mesh(
+    new THREE.SphereGeometry(0.52, 32, 32),
+    material(0xffcf7a, { roughness: 0.58, metalness: 0.02 })
   );
-  pit.position.set(0.12, 0.18, 0.68);
-  pit.scale.set(1, 1.05, 0.42);
-  pit.castShadow = true;
-  group.add(pit);
+  belly.position.set(0, -0.56, 0.7);
+  belly.scale.set(1.05, 0.78, 0.22);
+  belly.castShadow = true;
+  group.add(belly);
 
   const ears = [
     { x: -0.58, rotation: 0.32 },
@@ -283,7 +292,7 @@ function createJake() {
   ].map((item) => {
     const ear = new THREE.Mesh(
       new THREE.ConeGeometry(0.34, 0.64, 4),
-      material(colors.moss, { roughness: 0.56 })
+      material(colors.jakeShadow, { roughness: 0.56 })
     );
     ear.position.set(item.x, 1.35, 0.06);
     ear.rotation.set(0.08, item.rotation, Math.sign(-item.x) * 0.35);
@@ -294,7 +303,7 @@ function createJake() {
 
   const eyeMaterial = material(0x050606, { roughness: 0.22, metalness: 0.04 });
   const eyes = [-0.43, 0.43].map((x) => {
-    const eye = new THREE.Mesh(new THREE.SphereGeometry(0.105, 24, 24), eyeMaterial);
+    const eye = new THREE.Mesh(new THREE.SphereGeometry(0.135, 24, 24), eyeMaterial);
     eye.position.set(x, -0.02, 0.76);
     eye.scale.set(1, 1, 0.32);
     group.add(eye);
@@ -314,6 +323,24 @@ function createJake() {
   smile.scale.set(1, 0.72, 0.35);
   group.add(smile);
 
+  const nose = new THREE.Mesh(
+    new THREE.SphereGeometry(0.07, 18, 18),
+    eyeMaterial
+  );
+  nose.position.set(0, -0.18, 0.81);
+  nose.scale.set(1.2, 0.82, 0.42);
+  group.add(nose);
+
+  [-1, 1].forEach((side) => {
+    const cheek = new THREE.Mesh(
+      new THREE.SphereGeometry(0.13, 18, 18),
+      material(0xffc262, { roughness: 0.62 })
+    );
+    cheek.position.set(side * 0.2, -0.22, 0.77);
+    cheek.scale.set(1, 0.74, 0.25);
+    group.add(cheek);
+  });
+
   [-1, 1].forEach((side) => {
     for (let index = 0; index < 3; index += 1) {
       const whisker = new THREE.Mesh(
@@ -327,13 +354,33 @@ function createJake() {
   });
 
   const tail = new THREE.Mesh(
-    new THREE.TorusGeometry(0.48, 0.045, 14, 64, Math.PI * 1.38),
-    material(colors.moss, { roughness: 0.5 })
+    new THREE.TorusGeometry(0.56, 0.045, 14, 72, Math.PI * 1.48),
+    material(colors.jakeShadow, { roughness: 0.5 })
   );
   tail.position.set(0.93, -0.24, -0.08);
   tail.rotation.set(0.8, -0.2, -1.35);
   tail.castShadow = true;
   group.add(tail);
+
+  [-1, 1].forEach((side) => {
+    const arm = new THREE.Mesh(
+      new THREE.CylinderGeometry(0.055, 0.07, 1.55, 18),
+      material(colors.jakeYellow, { roughness: 0.56 })
+    );
+    arm.position.set(side * 0.92, -0.32, 0.2);
+    arm.rotation.set(0.42, 0.12 * side, side * 0.84);
+    arm.castShadow = true;
+    group.add(arm);
+
+    const paw = new THREE.Mesh(
+      new THREE.SphereGeometry(0.12, 18, 18),
+      material(colors.jakeYellow, { roughness: 0.56 })
+    );
+    paw.position.set(side * 1.45, -0.88, 0.18);
+    paw.scale.set(1.15, 0.75, 0.7);
+    paw.castShadow = true;
+    group.add(paw);
+  });
 
   const base = new THREE.Mesh(
     new THREE.CylinderGeometry(0.92, 1.12, 0.12, 56),
@@ -604,6 +651,150 @@ function updateConstellations(data, time) {
     array[index * 3 + 2] = Math.sin(angle) * point.radius;
   });
   data.geometry.attributes.position.needsUpdate = true;
+}
+
+function createCandyWorld() {
+  const group = new THREE.Group();
+  const movers = [];
+
+  const candyTrees = [
+    [-5.1, -1.52, -0.8, colors.candyPink],
+    [-4.5, -1.52, 2.9, colors.candyBlue],
+    [4.85, -1.52, -0.7, colors.candyPink],
+    [4.4, -1.52, 2.6, colors.lemon],
+    [0.7, -1.52, 3.9, colors.candyBlue]
+  ];
+
+  candyTrees.forEach(([x, y, z, color], index) => {
+    const tree = new THREE.Group();
+    tree.position.set(x, y, z);
+
+    const trunk = new THREE.Mesh(
+      new THREE.CylinderGeometry(0.06, 0.08, 0.82, 12),
+      material(colors.warm, { roughness: 0.48 })
+    );
+    trunk.position.y = 0.34;
+    trunk.castShadow = true;
+    tree.add(trunk);
+
+    const top = new THREE.Mesh(
+      new THREE.SphereGeometry(0.28, 20, 20),
+      material(color, { roughness: 0.44, metalness: 0.02 })
+    );
+    top.position.y = 0.82;
+    top.scale.set(1, 0.86, 1);
+    top.castShadow = true;
+    tree.add(top);
+
+    const ring = new THREE.Mesh(
+      new THREE.TorusGeometry(0.32, 0.018, 8, 40),
+      material(colors.cream, { roughness: 0.52 })
+    );
+    ring.position.y = 0.82;
+    ring.rotation.x = Math.PI / 2;
+    tree.add(ring);
+
+    movers.push({ item: tree, kind: "tree", phase: index * 0.7 });
+    group.add(tree);
+  });
+
+  const lemonTower = new THREE.Group();
+  lemonTower.position.set(-4.35, -1.48, -2.55);
+  const lemonHead = new THREE.Mesh(
+    new THREE.SphereGeometry(0.44, 32, 24),
+    material(colors.lemon, { roughness: 0.5, metalness: 0.02 })
+  );
+  lemonHead.scale.set(0.78, 1.22, 0.78);
+  lemonHead.position.y = 1.15;
+  lemonHead.castShadow = true;
+  lemonTower.add(lemonHead);
+
+  const lemonBody = new THREE.Mesh(
+    new THREE.CylinderGeometry(0.26, 0.34, 1.1, 6),
+    material(colors.lemon, { roughness: 0.54 })
+  );
+  lemonBody.position.y = 0.48;
+  lemonBody.castShadow = true;
+  lemonTower.add(lemonBody);
+
+  [-0.12, 0.12].forEach((x) => {
+    const eye = new THREE.Mesh(new THREE.SphereGeometry(0.035, 12, 12), material(colors.coal, { roughness: 0.28 }));
+    eye.position.set(x, 1.22, 0.34);
+    lemonTower.add(eye);
+  });
+
+  const crown = new THREE.Mesh(
+    new THREE.ConeGeometry(0.2, 0.32, 5),
+    material(colors.warm, { roughness: 0.38 })
+  );
+  crown.position.y = 1.73;
+  crown.castShadow = true;
+  lemonTower.add(crown);
+  movers.push({ item: lemonTower, kind: "tower", phase: 0.4 });
+  group.add(lemonTower);
+
+  const portal = new THREE.Group();
+  portal.position.set(4.2, -0.35, -2.7);
+  const portalRing = new THREE.Mesh(
+    new THREE.TorusGeometry(0.72, 0.05, 18, 80),
+    material(colors.candyBlue, { emissive: colors.candyBlue, emissiveIntensity: 0.1, roughness: 0.38 })
+  );
+  portal.add(portalRing);
+  const portalDisc = new THREE.Mesh(
+    new THREE.CircleGeometry(0.63, 48),
+    material(0xd9fff3, { transparent: true, opacity: 0.34, roughness: 0.24 })
+  );
+  portal.add(portalDisc);
+  movers.push({ item: portal, kind: "portal", phase: 1.2 });
+  group.add(portal);
+
+  for (let index = 0; index < 10; index += 1) {
+    const charm = new THREE.Mesh(
+      index % 2
+        ? new THREE.OctahedronGeometry(0.09, 0)
+        : new THREE.SphereGeometry(0.085, 14, 14),
+      material(index % 3 === 0 ? colors.candyPink : index % 3 === 1 ? colors.lemon : colors.candyBlue, {
+        emissive: index % 3 === 0 ? colors.candyPink : index % 3 === 1 ? colors.lemon : colors.candyBlue,
+        emissiveIntensity: 0.06,
+        roughness: 0.46
+      })
+    );
+    charm.position.set(Math.cos(index) * 3.8, -0.45 + Math.sin(index * 1.7) * 0.5, Math.sin(index) * 3.2);
+    charm.castShadow = true;
+    movers.push({ item: charm, kind: "charm", phase: index * 0.37, radius: 3.8 + (index % 3) * 0.32 });
+    group.add(charm);
+  }
+
+  return { group, movers };
+}
+
+function updateCandyWorld(world, time, activeKey) {
+  world.movers.forEach((entry, index) => {
+    if (entry.kind === "tree") {
+      entry.item.rotation.z = Math.sin(time * 1.2 + entry.phase) * 0.035;
+      entry.item.scale.y = 1 + Math.sin(time * 1.5 + entry.phase) * 0.025;
+    }
+
+    if (entry.kind === "tower") {
+      entry.item.rotation.y = Math.sin(time * 0.8) * 0.16;
+      entry.item.position.y = -1.48 + Math.sin(time * 1.1 + entry.phase) * 0.035;
+    }
+
+    if (entry.kind === "portal") {
+      entry.item.rotation.z = time * 0.28;
+      entry.item.scale.setScalar(activeKey === "curiosity" ? 1.14 : 1);
+    }
+
+    if (entry.kind === "charm") {
+      const speed = activeKey === "curiosity" ? 0.55 : 0.32;
+      const angle = time * speed + entry.phase + index * 0.15;
+      entry.item.position.x = Math.cos(angle) * entry.radius;
+      entry.item.position.z = Math.sin(angle) * (entry.radius * 0.74);
+      entry.item.position.y = -0.18 + Math.sin(time * 1.7 + entry.phase) * 0.42;
+      entry.item.rotation.x += 0.012;
+      entry.item.rotation.y += 0.018;
+    }
+  });
 }
 
 function createFloor() {
