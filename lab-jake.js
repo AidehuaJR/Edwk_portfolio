@@ -220,7 +220,7 @@ function initLab() {
     rig.rotation.y = THREE.MathUtils.lerp(rig.rotation.y, desiredRotation, reducedMotion ? 0.035 : 0.06);
     rig.rotation.x = THREE.MathUtils.lerp(rig.rotation.x, -pointer.y * 0.05, 0.04);
 
-    jake.update(time * motionScale, activeKey, rig.rotation.y);
+    jake.update(time * motionScale, activeKey, rig.rotation.y, desiredRotation);
     updateValueGroups(valueGroups, time * motionScale);
     updateConstellations(constellations, time * motionScale);
     updateCandyWorld(candyWorld, time * motionScale, activeKey);
@@ -470,12 +470,13 @@ function createJake() {
 
   return {
     group,
-    update(time, activeKey, worldRotation = 0) {
+    update(time, activeKey, worldRotation = 0, targetRotation = 0) {
       const lively = activeKey === "curiosity" ? 1.18 : 1;
       group.position.y = 0.15 + Math.sin(time * 1.4) * 0.08;
+      group.rotation.y = THREE.MathUtils.lerp(group.rotation.y, targetRotation * 0.1, 0.045);
       group.rotation.z = Math.sin(time * 0.75) * 0.025;
-      const faceTurn = THREE.MathUtils.clamp(-worldRotation * 0.62, -0.82, 0.82);
-      faceRig.rotation.y = THREE.MathUtils.lerp(faceRig.rotation.y, faceTurn, 0.08);
+      const faceTurn = THREE.MathUtils.clamp(-worldRotation * 0.12, -0.18, 0.18);
+      faceRig.rotation.y = THREE.MathUtils.lerp(faceRig.rotation.y, faceTurn, 0.06);
       faceRig.rotation.x = THREE.MathUtils.lerp(faceRig.rotation.x, Math.sin(time * 0.9) * 0.035, 0.06);
       ears.forEach((ear, index) => {
         ear.rotation.z += Math.sin(time * 2.4 + index) * 0.0015 * lively;
