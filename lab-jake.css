@@ -295,6 +295,20 @@ h1 {
     box-shadow: 0 38px 90px rgba(21, 40, 34, 0.18);
 }
 
+body[data-initial-value="curiosity"] .jake-lab-stage {
+    background:
+        radial-gradient(circle at 50% 42%, rgba(127, 184, 217, 0.22), transparent 36%),
+        linear-gradient(135deg, rgba(111, 113, 50, 0.08), rgba(248, 237, 202, 0.1)),
+        rgba(242, 230, 192, 0.34);
+}
+
+body[data-initial-value="quality"] .jake-lab-stage {
+    background:
+        radial-gradient(circle at 50% 48%, rgba(21, 40, 34, 0.12), transparent 38%),
+        linear-gradient(135deg, rgba(214, 143, 74, 0.13), rgba(248, 237, 202, 0.08)),
+        rgba(242, 230, 192, 0.34);
+}
+
 .jake-lab-stage::before {
     content: "";
     position: absolute;

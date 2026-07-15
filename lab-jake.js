@@ -10,6 +10,7 @@ const proofElements = [
   document.getElementById("jake-lab-proof-c")
 ];
 const buttons = Array.from(document.querySelectorAll("[data-value]"));
+const sceneVariant = document.body.dataset.initialValue || "impact";
 
 const valueData = {
   impact: {
@@ -147,6 +148,9 @@ function initLab() {
   const processLoop = createProcessLoop();
   rig.add(processLoop.group);
 
+  const variantScene = createVariantScene(sceneVariant);
+  rig.add(variantScene.group);
+
   const raycaster = new THREE.Raycaster();
   const mouse = new THREE.Vector2();
   const pointer = { x: 0, y: 0, tx: 0, ty: 0, dragging: false, lastX: 0, lastY: 0 };
@@ -225,6 +229,7 @@ function initLab() {
     updateConstellations(constellations, time * motionScale);
     updateCandyWorld(candyWorld, time * motionScale, activeKey);
     updateProcessLoop(processLoop, time * motionScale, activeKey);
+    updateVariantScene(variantScene, time * motionScale, activeKey);
 
     const activeTarget = valueData[activeKey].target;
     camera.position.x = THREE.MathUtils.lerp(camera.position.x, activeTarget.x * 0.18 + pointer.x * 0.7, 0.035);
@@ -473,9 +478,10 @@ function createJake() {
     update(time, activeKey, worldRotation = 0, targetRotation = 0) {
       const lively = activeKey === "curiosity" ? 1.18 : 1;
       group.position.y = 0.15 + Math.sin(time * 1.4) * 0.08;
-      group.rotation.y = THREE.MathUtils.lerp(group.rotation.y, targetRotation * 0.1, 0.045);
+      const bodyTurn = targetRotation * 0.42 + Math.sin(time * 0.55) * 0.08;
+      group.rotation.y = THREE.MathUtils.lerp(group.rotation.y, bodyTurn, 0.06);
       group.rotation.z = Math.sin(time * 0.75) * 0.025;
-      const faceTurn = THREE.MathUtils.clamp(-worldRotation * 0.12, -0.18, 0.18);
+      const faceTurn = THREE.MathUtils.clamp(-worldRotation * 0.04, -0.08, 0.08);
       faceRig.rotation.y = THREE.MathUtils.lerp(faceRig.rotation.y, faceTurn, 0.06);
       faceRig.rotation.x = THREE.MathUtils.lerp(faceRig.rotation.x, Math.sin(time * 0.9) * 0.035, 0.06);
       ears.forEach((ear, index) => {
@@ -953,6 +959,161 @@ function updateProcessLoop(loopData, time, activeKey) {
       0.06
     );
     item.pad.rotation.y += 0.012 * speed;
+  });
+}
+
+function createVariantScene(variant) {
+  if (variant === "curiosity") {
+    return createCuriosityVariant();
+  }
+
+  if (variant === "quality") {
+    return createProofVariant();
+  }
+
+  return createImpactVariant();
+}
+
+function createImpactVariant() {
+  const group = new THREE.Group();
+  const movers = [];
+
+  for (let index = 0; index < 5; index += 1) {
+    const marker = new THREE.Group();
+    marker.position.set(-4.8 + index * 0.68, -1.22 + index * 0.16, 3.1 - index * 0.18);
+
+    const stem = new THREE.Mesh(
+      new THREE.CylinderGeometry(0.035, 0.045, 0.7 + index * 0.12, 12),
+      material(colors.avocado, { roughness: 0.52 })
+    );
+    stem.position.y = 0.34 + index * 0.06;
+    marker.add(stem);
+
+    const fruit = new THREE.Mesh(
+      new THREE.SphereGeometry(0.16 + index * 0.018, 18, 18),
+      material(index % 2 ? colors.warm : colors.lemon, { roughness: 0.48, metalness: 0.03 })
+    );
+    fruit.position.y = 0.74 + index * 0.12;
+    fruit.castShadow = true;
+    marker.add(fruit);
+    movers.push({ item: marker, phase: index * 0.56, kind: "sprout" });
+    group.add(marker);
+  }
+
+  return { group, movers, variant: "impact" };
+}
+
+function createCuriosityVariant() {
+  const group = new THREE.Group();
+  const movers = [];
+
+  const portal = new THREE.Group();
+  portal.position.set(0, 0.42, -3.55);
+  for (let index = 0; index < 4; index += 1) {
+    const ring = new THREE.Mesh(
+      new THREE.TorusGeometry(1.05 + index * 0.22, 0.018 + index * 0.006, 14, 100),
+      material(index % 2 ? colors.avocado : colors.candyBlue, {
+        emissive: index % 2 ? colors.avocado : colors.candyBlue,
+        emissiveIntensity: 0.08,
+        transparent: true,
+        opacity: 0.42
+      })
+    );
+    ring.rotation.set(Math.PI / 2.4, 0.15 * index, 0);
+    portal.add(ring);
+    movers.push({ item: ring, phase: index * 0.4, kind: "ring" });
+  }
+  group.add(portal);
+
+  for (let index = 0; index < 14; index += 1) {
+    const question = makeTextSprite(index % 3 === 0 ? "?" : "why", 0.24, index % 2 ? colors.moss : colors.coal);
+    question.position.set(
+      Math.cos(index * 0.9) * (2.1 + (index % 4) * 0.28),
+      -0.2 + Math.sin(index * 1.4) * 1.1,
+      -3.2 + Math.sin(index * 0.9) * 0.65
+    );
+    movers.push({ item: question, phase: index * 0.31, kind: "question", radius: 2.1 + (index % 4) * 0.28 });
+    group.add(question);
+  }
+
+  return { group, movers, variant: "curiosity" };
+}
+
+function createProofVariant() {
+  const group = new THREE.Group();
+  const movers = [];
+
+  const panelTexts = ["test", "refactor", "explain", "ship"];
+  panelTexts.forEach((text, index) => {
+    const panel = new THREE.Group();
+    panel.position.set(-2.7 + index * 1.8, -0.28 + (index % 2) * 0.28, -3.25);
+    panel.rotation.y = -0.08 + index * 0.05;
+
+    const slab = new THREE.Mesh(
+      new THREE.BoxGeometry(1.22, 0.72, 0.07),
+      material(index % 2 ? colors.surface : colors.cream, { roughness: 0.55 })
+    );
+    slab.castShadow = true;
+    panel.add(slab);
+
+    for (let line = 0; line < 3; line += 1) {
+      const codeLine = new THREE.Mesh(
+        new THREE.BoxGeometry(0.72 - line * 0.1, 0.035, 0.025),
+        material(line === 1 ? colors.avocado : colors.coal, { roughness: 0.45 })
+      );
+      codeLine.position.set(-0.06, 0.18 - line * 0.16, 0.06);
+      panel.add(codeLine);
+    }
+
+    const label = makeTextSprite(text, 0.24, colors.coal);
+    label.position.set(0, -0.52, 0.08);
+    panel.add(label);
+    movers.push({ item: panel, phase: index * 0.5, kind: "panel" });
+    group.add(panel);
+  });
+
+  const debugBeam = new THREE.Mesh(
+    new THREE.CylinderGeometry(0.018, 0.018, 5.2, 12),
+    material(colors.warm, { emissive: colors.warm, emissiveIntensity: 0.16, transparent: true, opacity: 0.56 })
+  );
+  debugBeam.position.set(0, 0.6, -3.35);
+  debugBeam.rotation.z = Math.PI / 2;
+  group.add(debugBeam);
+  movers.push({ item: debugBeam, phase: 0, kind: "beam" });
+
+  return { group, movers, variant: "proof" };
+}
+
+function updateVariantScene(sceneData, time, activeKey) {
+  sceneData.movers.forEach((entry, index) => {
+    if (entry.kind === "sprout") {
+      entry.item.scale.y = 1 + Math.sin(time * 1.4 + entry.phase) * 0.08;
+      entry.item.rotation.y = Math.sin(time * 0.8 + entry.phase) * 0.16;
+    }
+
+    if (entry.kind === "ring") {
+      entry.item.rotation.z = time * (0.18 + index * 0.04) + entry.phase;
+      entry.item.scale.setScalar(activeKey === "curiosity" ? 1.08 : 0.96);
+    }
+
+    if (entry.kind === "question") {
+      const angle = time * 0.34 + entry.phase;
+      entry.item.position.x = Math.cos(angle) * entry.radius;
+      entry.item.position.y += Math.sin(time * 1.8 + entry.phase) * 0.003;
+      entry.item.position.z = -3.2 + Math.sin(angle) * 0.7;
+      entry.item.material.opacity = activeKey === "curiosity" ? 0.96 : 0.62;
+    }
+
+    if (entry.kind === "panel") {
+      entry.item.position.y += Math.sin(time * 1.3 + entry.phase) * 0.0025;
+      entry.item.rotation.y = -0.08 + index * 0.05 + Math.sin(time * 0.7 + entry.phase) * 0.06;
+      entry.item.scale.setScalar(activeKey === "quality" ? 1.08 : 0.98);
+    }
+
+    if (entry.kind === "beam") {
+      entry.item.rotation.x = Math.sin(time * 1.5) * 0.08;
+      entry.item.scale.x = activeKey === "quality" ? 1.16 : 0.86;
+    }
   });
 }
 
