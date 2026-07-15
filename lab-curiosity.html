@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jake Curiosity Portal</title>
+    <meta name="description" content="A focused Three.js portfolio lab about curiosity, prototyping, and learning loops.">
+    <meta property="og:title" content="Jake Curiosity Portal | Aidehua Edward Kim">
+    <meta property="og:description" content="A playful 3D case-study page focused on research, prototyping, and experimental thinking.">
+    <meta property="og:type" content="website">
+    <link rel="stylesheet" href="lab-jake.css?v=jake-lab-39">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body data-initial-value="curiosity">
+    <main class="jake-lab-page">
+        <section class="jake-lab-copy" aria-label="Jake Curiosity Portal story">
+            <a class="back-link" href="index.html#lab"><i class="fa-solid fa-arrow-left"></i>Back to portfolio</a>
+            <p class="jake-kicker">Curiosity Portal</p>
+            <h1>Questions become prototypes.</h1>
+            <p class="jake-intro">A focused lab scene about how I explore unfamiliar problems, test ideas quickly, and let learning become visible.</p>
+            <article class="story-card" aria-live="polite">
+                <span id="jake-lab-tag">02 / Curiosity</span>
+                <h2 id="jake-lab-title">Question Portal</h2>
+                <p id="jake-lab-copy">Ask better questions, test strange prototypes, and keep the learning loop visible. A portal lens and orbiting idea charms react when you explore.</p>
+                <div class="proof-strip" aria-label="Current proof signals">
+                    <span id="jake-lab-proof-a">Fast learning</span>
+                    <span id="jake-lab-proof-b">Prototype mindset</span>
+                    <span id="jake-lab-proof-c">Visual inquiry</span>
+                </div>
+            </article>
+            <section class="recruiter-panel" aria-label="Recruiter proof summary">
+                <div><span>Focus</span><strong>Curiosity + prototyping</strong></div>
+                <div><span>Built with</span><strong>Three.js motion systems</strong></div>
+                <div><span>Interview hook</span><strong>Ask how I learn a new system quickly</strong></div>
+            </section>
+            <div class="lab-cta-row" aria-label="Recruiter actions">
+                <a href="index.html#contact"><i class="fa-solid fa-paper-plane"></i>Contact</a>
+                <a href="https://github.com/AidehuaJR" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i>GitHub</a>
+                <a href="Resume-EdwardKim.pdf" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-file-lines"></i>Resume</a>
+            </div>
+            <div class="value-buttons" role="group" aria-label="Select Jake lab value">
+                <button class="value-button" type="button" data-value="impact"><i class="fa-solid fa-chart-simple"></i>Impact</button>
+                <button class="value-button is-active" type="button" data-value="curiosity"><i class="fa-solid fa-magnifying-glass"></i>Curiosity</button>
+                <button class="value-button" type="button" data-value="solving"><i class="fa-solid fa-puzzle-piece"></i>Solving</button>
+                <button class="value-button" type="button" data-value="quality"><i class="fa-solid fa-code"></i>Code Quality</button>
+                <button class="value-button" type="button" data-value="communication"><i class="fa-solid fa-comment-dots"></i>Communication</button>
+            </div>
+        </section>
+        <section class="jake-lab-stage" aria-label="Interactive 3D Jake curiosity lab">
+            <canvas id="jake-lab-canvas"></canvas>
+            <div class="stage-hint"><span>drag / click</span><strong>Focus the portal objects</strong></div>
+            <div class="stage-meter" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+        </section>
+    </main>
+    <script type="module" src="lab-jake.js?v=jake-lab-39"></script>
+</body>
+</html>

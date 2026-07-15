@@ -35,6 +35,27 @@ body {
     font-family: "Inter", sans-serif;
 }
 
+body[data-initial-value="impact"] {
+    background:
+        radial-gradient(circle at 78% 22%, rgba(214, 143, 74, 0.2), transparent 30%),
+        radial-gradient(circle at 12% 78%, rgba(175, 163, 74, 0.26), transparent 28%),
+        linear-gradient(135deg, #f8edca 0%, var(--cream) 58%, #dfd09a 100%);
+}
+
+body[data-initial-value="curiosity"] {
+    background:
+        radial-gradient(circle at 76% 20%, rgba(111, 113, 50, 0.16), transparent 32%),
+        radial-gradient(circle at 18% 76%, rgba(175, 163, 74, 0.22), transparent 31%),
+        linear-gradient(135deg, #f8edca 0%, #efe2b6 55%, #d8c886 100%);
+}
+
+body[data-initial-value="quality"] {
+    background:
+        radial-gradient(circle at 72% 24%, rgba(21, 40, 34, 0.12), transparent 32%),
+        radial-gradient(circle at 14% 78%, rgba(214, 143, 74, 0.16), transparent 28%),
+        linear-gradient(135deg, #f7ebc6 0%, var(--cream) 54%, #cfc17d 100%);
+}
+
 .jake-lab-page {
     min-height: 100vh;
     display: grid;

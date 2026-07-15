@@ -70,7 +70,7 @@ const colors = {
   lemon: 0xf4df4c
 };
 
-let activeKey = normalizeHash() || "impact";
+let activeKey = normalizeHash() || document.body.dataset.initialValue || "impact";
 
 if (canvas) {
   initLab();
@@ -220,7 +220,7 @@ function initLab() {
     rig.rotation.y = THREE.MathUtils.lerp(rig.rotation.y, desiredRotation, reducedMotion ? 0.035 : 0.06);
     rig.rotation.x = THREE.MathUtils.lerp(rig.rotation.x, -pointer.y * 0.05, 0.04);
 
-    jake.update(time * motionScale, activeKey);
+    jake.update(time * motionScale, activeKey, rig.rotation.y);
     updateValueGroups(valueGroups, time * motionScale);
     updateConstellations(constellations, time * motionScale);
     updateCandyWorld(candyWorld, time * motionScale, activeKey);
@@ -299,46 +299,75 @@ function normalizeHash() {
 function createJake() {
   const group = new THREE.Group();
   group.position.set(0, 0.15, 0.2);
+  const faceRig = new THREE.Group();
+  faceRig.position.set(0, 0, 0.02);
+  group.add(faceRig);
 
   const outer = new THREE.Mesh(
-    new THREE.SphereGeometry(1.45, 48, 48),
-    material(colors.jakeYellow, { roughness: 0.56, metalness: 0.03 })
+    new THREE.SphereGeometry(1.45, 64, 48),
+    material(colors.jakeYellow, { roughness: 0.5, metalness: 0.02 })
   );
-  outer.scale.set(0.72, 1.16, 0.44);
+  outer.scale.set(0.74, 1.18, 0.48);
   outer.castShadow = true;
   outer.receiveShadow = true;
   group.add(outer);
 
+  const sideShade = new THREE.Mesh(
+    new THREE.SphereGeometry(1.42, 48, 32),
+    material(colors.jakeShadow, { roughness: 0.58, metalness: 0.02, transparent: true, opacity: 0.34 })
+  );
+  sideShade.scale.set(0.68, 1.08, 0.32);
+  sideShade.position.set(0.18, -0.02, -0.08);
+  sideShade.castShadow = true;
+  group.add(sideShade);
+
   const face = new THREE.Mesh(
-    new THREE.SphereGeometry(1.25, 48, 48),
-    material(0xf6bf58, { roughness: 0.62, metalness: 0.02 })
+    new THREE.SphereGeometry(1.25, 64, 40),
+    material(0xffc568, { roughness: 0.55, metalness: 0.02 })
   );
   face.position.z = 0.25;
   face.scale.set(0.7, 1.02, 0.24);
   face.castShadow = true;
-  group.add(face);
+  faceRig.add(face);
+
+  const faceRim = new THREE.Mesh(
+    new THREE.TorusGeometry(0.82, 0.026, 16, 96),
+    material(0xc97518, { roughness: 0.48, metalness: 0.03, transparent: true, opacity: 0.48 })
+  );
+  faceRim.position.set(0, -0.05, 0.76);
+  faceRim.scale.set(0.78, 1.12, 0.18);
+  faceRig.add(faceRim);
 
   const belly = new THREE.Mesh(
-    new THREE.SphereGeometry(0.52, 32, 32),
-    material(0xffcf7a, { roughness: 0.58, metalness: 0.02 })
+    new THREE.SphereGeometry(0.52, 40, 32),
+    material(0xffd587, { roughness: 0.56, metalness: 0.02 })
   );
   belly.position.set(0, -0.56, 0.7);
   belly.scale.set(1.05, 0.78, 0.22);
   belly.castShadow = true;
-  group.add(belly);
+  faceRig.add(belly);
 
   const ears = [
     { x: -0.58, rotation: 0.32 },
     { x: 0.58, rotation: -0.32 }
   ].map((item) => {
     const ear = new THREE.Mesh(
-      new THREE.ConeGeometry(0.34, 0.64, 4),
+      new THREE.ConeGeometry(0.36, 0.68, 4),
       material(colors.jakeShadow, { roughness: 0.56 })
     );
     ear.position.set(item.x, 1.35, 0.06);
     ear.rotation.set(0.08, item.rotation, Math.sign(-item.x) * 0.35);
     ear.castShadow = true;
     group.add(ear);
+
+    const innerEar = new THREE.Mesh(
+      new THREE.ConeGeometry(0.2, 0.38, 4),
+      material(0xffd587, { roughness: 0.55 })
+    );
+    innerEar.position.set(item.x * 0.99, 1.32, 0.18);
+    innerEar.rotation.copy(ear.rotation);
+    innerEar.scale.set(0.78, 0.82, 0.42);
+    group.add(innerEar);
     return ear;
   });
 
@@ -347,11 +376,11 @@ function createJake() {
     const eye = new THREE.Mesh(new THREE.SphereGeometry(0.135, 24, 24), eyeMaterial);
     eye.position.set(x, -0.02, 0.76);
     eye.scale.set(1, 1, 0.32);
-    group.add(eye);
+    faceRig.add(eye);
     const shine = new THREE.Mesh(new THREE.SphereGeometry(0.024, 12, 12), material(colors.white, { roughness: 0.2 }));
     shine.position.set(x - 0.035, 0.025, 0.795);
     shine.scale.set(1, 1, 0.4);
-    group.add(shine);
+    faceRig.add(shine);
     return eye;
   });
 
@@ -362,7 +391,7 @@ function createJake() {
   smile.position.set(0, -0.34, 0.78);
   smile.rotation.set(0, 0, Math.PI);
   smile.scale.set(1, 0.72, 0.35);
-  group.add(smile);
+  faceRig.add(smile);
 
   const nose = new THREE.Mesh(
     new THREE.SphereGeometry(0.07, 18, 18),
@@ -370,7 +399,7 @@ function createJake() {
   );
   nose.position.set(0, -0.18, 0.81);
   nose.scale.set(1.2, 0.82, 0.42);
-  group.add(nose);
+  faceRig.add(nose);
 
   [-1, 1].forEach((side) => {
     const cheek = new THREE.Mesh(
@@ -379,18 +408,26 @@ function createJake() {
     );
     cheek.position.set(side * 0.2, -0.22, 0.77);
     cheek.scale.set(1, 0.74, 0.25);
-    group.add(cheek);
+    faceRig.add(cheek);
   });
 
   [-1, 1].forEach((side) => {
+    const brow = new THREE.Mesh(
+      new THREE.CylinderGeometry(0.015, 0.018, 0.22, 10),
+      material(colors.coal, { roughness: 0.35 })
+    );
+    brow.position.set(side * 0.43, 0.16, 0.79);
+    brow.rotation.set(Math.PI / 2, 0, side * 0.35);
+    faceRig.add(brow);
+
     for (let index = 0; index < 3; index += 1) {
       const whisker = new THREE.Mesh(
-        new THREE.CylinderGeometry(0.012, 0.012, 0.52, 10),
+        new THREE.CylinderGeometry(0.01, 0.013, 0.62, 12),
         material(colors.coal, { roughness: 0.35 })
       );
       whisker.position.set(side * 0.52, -0.22 + index * 0.09, 0.72);
       whisker.rotation.set(Math.PI / 2, 0, side * (1.1 - index * 0.16));
-      group.add(whisker);
+      faceRig.add(whisker);
     }
   });
 
@@ -433,10 +470,13 @@ function createJake() {
 
   return {
     group,
-    update(time, activeKey) {
+    update(time, activeKey, worldRotation = 0) {
       const lively = activeKey === "curiosity" ? 1.18 : 1;
       group.position.y = 0.15 + Math.sin(time * 1.4) * 0.08;
       group.rotation.z = Math.sin(time * 0.75) * 0.025;
+      const faceTurn = THREE.MathUtils.clamp(-worldRotation * 0.62, -0.82, 0.82);
+      faceRig.rotation.y = THREE.MathUtils.lerp(faceRig.rotation.y, faceTurn, 0.08);
+      faceRig.rotation.x = THREE.MathUtils.lerp(faceRig.rotation.x, Math.sin(time * 0.9) * 0.035, 0.06);
       ears.forEach((ear, index) => {
         ear.rotation.z += Math.sin(time * 2.4 + index) * 0.0015 * lively;
       });
