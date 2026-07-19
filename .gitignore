@@ -1,0 +1,2 @@
+# Keep editable 3D source meshes out of the public website repository.
+models/*.stl
